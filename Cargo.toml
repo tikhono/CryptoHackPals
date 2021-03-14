@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "hacks/general/encoding/ascii",
+    "hacks/general/encoding/base_64",
+    "hacks/general/encoding/bytes_and_big_integers",
+    "hacks/general/encoding/encoding_challenge",
+    "hacks/general/encoding/hex",
+
+]
