@@ -10,8 +10,8 @@ mod tests {
         let num = U1024::from_dec_str(string).unwrap();
         let bytes: &mut [u8] = &mut [0; 16 * 8];
         num.to_big_endian(bytes);
-        for i in 0..bytes.len() {
-            print!("{}", bytes[i] as char);
+        for byte in bytes.iter() {
+            print!("{}", *byte as char);
         }
     }
 }

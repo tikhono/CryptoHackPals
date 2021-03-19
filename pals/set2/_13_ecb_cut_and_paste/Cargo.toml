@@ -1,12 +1,9 @@
 [package]
-name = "encoding_challenge"
+name = "_13_ecb_cut_and_paste"
 version = "0.1.0"
-authors = ["tikhono <tihonovandrey11@gmail.com>"]
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-telnet = ""
-serde_json = ""
-serde = { version = "1.0", features = ["derive"] }
