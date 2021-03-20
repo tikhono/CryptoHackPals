@@ -23,19 +23,19 @@ mod tests {
         );
     }
     #[test]
-    fn test_0() {
+    fn test_00_xor_00() {
         assert_eq!("00", fixed_xor("00", "00"));
     }
     #[test]
-    fn test_1() {
+    fn test_00_xor_ff() {
         assert_eq!("ff", fixed_xor("00", "ff"));
     }
     #[test]
-    fn test_2() {
+    fn test_ff_xor_00() {
         assert_eq!("ff", fixed_xor("ff", "00"));
     }
     #[test]
-    fn test_3() {
+    fn test_ff_xor_ff() {
         assert_eq!("00", fixed_xor("ff", "ff"));
     }
 }

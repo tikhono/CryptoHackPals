@@ -10,4 +10,11 @@ mod tests {
             print!("{}", *iter as char);
         }
     }
+    #[test]
+    fn test_ascii_crate() {
+        use ascii::IntoAsciiString;
+        let ascii_hello: Vec<u8> = [104, 101, 108, 108, 111].to_vec();
+        let string_hello = ascii_hello.into_ascii_string().unwrap();
+        assert_eq!(string_hello, "hello");
+    }
 }

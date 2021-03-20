@@ -1,5 +1,5 @@
 > # Crypto Hack Pals
-> ## This repo contains solutions of challenges from [Crypto Hack](https://cryptohack.org/) and [Crypto Pals](https://cryptopals.com/).
+> ## This repo contains solutions of challenges from [Crypto Hack](https://cryptohack.org/user/Vorrol/) and [Crypto Pals](https://cryptopals.com/).
 
 > # First step: [Install Rust](https://www.rust-lang.org/tools/install)
 >
