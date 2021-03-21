@@ -19,3 +19,12 @@
 >       FLAG ^ KEY1 ^ KEY3 ^ KEY2 = 04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf
 >
 > > Before you XOR these objects, be sure to decode from hex to bytes. If you have `pwntools` installed, you have a xor function for byte strings: `from pwn import xor`
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package xor_properties --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package xor_properties --lib tests::capture_the_flag -- --exact
