@@ -8,6 +8,7 @@ members = [
     "hacks/general/xor/xor_starter",
     "hacks/general/xor/xor_properties",
     "hacks/general/xor/favourite_byte",
+    "hacks/block_ciphers/aes/structure_of_aes",
     "pals/set1/_01_convert_hex_to_base_64",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",
