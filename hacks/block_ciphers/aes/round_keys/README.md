@@ -13,3 +13,12 @@
 > Complete the `add_round_key` function, then use the `matrix2bytes` function to get your next flag.
 >
 > [add\_round\_key.py](https://cryptohack.org/static/challenges/add_round_key_b67b9a529ae739156107a74b14adde98.py)
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package round_keys --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package round_keys --lib tests::capture_the_flag -- --exact

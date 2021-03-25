@@ -31,3 +31,12 @@
 > Included is a `bytes2matrix` function for converting our initial plaintext block into a state matrix. Write a `matrix2bytes` function to turn that matrix back into bytes, and submit the resulting plaintext as the flag.
 >
 > [matrix.py](https://cryptohack.org/static/challenges/matrix_e1b463dddbee6d17959618cf370ff1a5.py)
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package structure_of_aes --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package structure_of_aes --lib tests::capture_the_flag -- --exact
