@@ -28,3 +28,12 @@
 > Capture the flag:
 >
 >     cargo test --package diffusion_through_permutation --lib tests::capture_the_flag -- --exact
+>
+> Test shift rows:
+>
+>     cargo test --package diffusion_through_permutation --lib tests::test_shift -- --exact
+> 
+> Test mix column:
+>
+>     cargo test --package diffusion_through_permutation --lib tests::test_mix_column -- --exact
+> 

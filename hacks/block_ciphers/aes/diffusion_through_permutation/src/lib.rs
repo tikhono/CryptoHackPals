@@ -69,7 +69,7 @@ pub fn inv_shift_rows(state: &mut Matrix4<u8>) {
 
 #[cfg(test)]
 mod tests {
-    use crate::{inv_mix_columns, inv_shift_rows, mix_columns, mix_single_column, shift_rows};
+    use crate::{inv_mix_columns, inv_shift_rows, mix_single_column, shift_rows};
     use ascii::IntoAsciiString;
     use nalgebra::Matrix4;
     use structure_of_aes::matrix2bytes;
