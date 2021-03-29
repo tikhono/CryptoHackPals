@@ -1,14 +1,20 @@
 #[cfg(test)]
 mod tests {
-    #[macro_use]
+    use ascii::IntoAsciiString;
+    use rot13::rot13;
     use serde::Deserialize;
-    use serde_json::{json, ser::to_string, to_vec};
+    use serde_json::{json, to_vec};
     use telnet::{Telnet, TelnetEvent};
 
     #[derive(Deserialize, Debug)]
     struct Response {
         r#type: String,
         encoded: String,
+    }
+    #[derive(Deserialize, Debug)]
+    struct ResponseUtf {
+        r#type: String,
+        encoded: Vec<u8>,
     }
     #[test]
     fn json_converter() {
@@ -26,25 +32,55 @@ mod tests {
         let mut connection = Telnet::connect(("134.122.111.232", 13377), 4096)
             .expect("Couldn't connect to the server...");
         println!("Connected to server");
-        let mut event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(buffer) => {
-                let resp: Response = serde_json::from_slice(&(*buffer)).unwrap();
-                println!("{:?}", resp);
+
+        for _ in 0..100 {
+            let event = connection.read().expect("Read Error");
+            match event {
+                TelnetEvent::Data(buffer) => {
+                    //println!("{:?}", buffer.clone().into_vec().into_ascii_string());
+                    let resp: Response = serde_json::from_slice(&(*buffer)).unwrap_or(Response {
+                        r#type: "utf-8".to_string(),
+                        encoded: "".to_string(),
+                    });
+                    let string = match resp.r#type.as_str() {
+                        "utf-8" => {
+                            let resp: ResponseUtf = serde_json::from_slice(&buffer).unwrap();
+                            resp.encoded.into_ascii_string().unwrap().to_string()
+                        }
+                        "rot13" => rot13(&*resp.encoded),
+                        "hex" => hex::decode(&*resp.encoded)
+                            .unwrap()
+                            .into_ascii_string()
+                            .unwrap()
+                            .to_string(),
+                        "base64" => base64::decode(&*resp.encoded)
+                            .unwrap()
+                            .into_ascii_string()
+                            .unwrap()
+                            .to_string(),
+                        "bigint" => hex::decode(resp.encoded.get(2..).unwrap())
+                            .unwrap()
+                            .into_ascii_string()
+                            .unwrap()
+                            .to_string(),
+                        _ => "".to_string(),
+                    };
+                    //println!("{:?}", string);
+                    let answ = json!({ "decoded": string.as_str()});
+                    connection
+                        .write(&to_vec(&answ).unwrap())
+                        .expect("Write Error");
+                }
+                _ => println!("Error"),
             }
-            _ => println!(""),
         }
-        let john = json!({"decoded": "1234"});
-        connection
-            .write(&to_vec(&john).unwrap())
-            .expect("Write Error");
-        let mut event = connection.read().expect("Read Error");
+        let event = connection.read().expect("Read Error");
         match event {
             TelnetEvent::Data(buffer) => {
-                let resp: Response = serde_json::from_slice(&(*buffer)).unwrap();
-                println!("{:?}", resp);
+                println!("{:?}", buffer.clone().into_vec().into_ascii_string());
             }
-            _ => println!(""),
+
+            _ => println!("Error"),
         }
     }
 }

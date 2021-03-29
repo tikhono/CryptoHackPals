@@ -1,5 +1,6 @@
 #[cfg(test)]
 mod tests {
+    use ascii::IntoAsciiString;
     use hex::FromHex;
 
     #[test]
@@ -8,5 +9,10 @@ mod tests {
         for b in vec {
             print!("{}", b as char);
         }
+    }
+    #[test]
+    fn capture() {
+        let vec = hex::decode("646566696e696e675f636f6e6669726d6174696f6e5f6c62").unwrap();
+        print!("{}", vec.into_ascii_string().unwrap());
     }
 }
