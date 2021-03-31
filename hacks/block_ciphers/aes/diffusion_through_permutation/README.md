@@ -4,7 +4,7 @@
 >
 > Substitution on its own creates non-linearity, however it doesn't distribute it over the entire state. Without diffusion, the same byte in the same position would get the same transformations applied to it each round. This would allow cryptanalysts to attack each byte position in the state matrix separately. We need to alternate substitutions by scrambling the state (in an invertible way) so that substitutions applied on one byte influence all other bytes in the state. Each input into the next S-box then becomes a function of multiple bytes, meaning that with every round the algebraic complexity of the system increases enormously.
 >
-> An ideal amount of diffusion causes a change of one bit in the plaintext to lead to a change in statistically half the bits of the ciphertext. This desirable outcome is called the [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect).
+> An ideal amount of diffusion causes a change of one bit in the plaintext to lead to a change in statistically half the bits of the CIPHERTEXT. This desirable outcome is called the [Avalanche effect](https://en.wikipedia.org/wiki/Avalanche_effect).
 >
 > The _ShiftRows_ and _MixColumns_ steps combine to achieve this. They work together to ensure every byte affects every other byte in the state within just two rounds.
 >

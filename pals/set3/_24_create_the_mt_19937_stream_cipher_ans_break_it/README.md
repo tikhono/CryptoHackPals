@@ -8,7 +8,7 @@
 >
 > Use your function to encrypt a known plaintext (say, 14 consecutive 'A' characters) prefixed by a random number of random characters.
 >
-> From the ciphertext, recover the "key" (the 16 bit seed).
+> From the CIPHERTEXT, recover the "KEY" (the 16 bit seed).
 >
 > Use the same idea to generate a random "password reset token" using MT19937 seeded from the current time.
 >

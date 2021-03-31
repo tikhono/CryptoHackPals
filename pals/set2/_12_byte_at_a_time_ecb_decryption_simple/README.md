@@ -2,7 +2,7 @@
 
 > ### Byte-at-a-time ECB decryption (Simple)
 >
-> Copy your oracle function to a new function that encrypts buffers under ECB mode using a _consistent_ but _unknown_ key (for instance, assign a single random key, once, to a global variable).
+> Copy your oracle function to a new function that encrypts buffers under ECB mode using a _consistent_ but _unknown_ KEY (for instance, assign a single random KEY, once, to a global variable).
 >
 > Now take that same function and have it append to the plaintext, BEFORE ENCRYPTING, the following string:
 >
@@ -18,7 +18,7 @@
 >
 > What you have now is a function that produces:
 >
->     AES-128-ECB(your-string || unknown-string, random-key)
+>     AES-128-ECB(your-string || unknown-string, random-KEY)
 >
 > It turns out: you can decrypt "unknown-string" with repeated calls to the oracle function!
 >

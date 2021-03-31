@@ -2,7 +2,7 @@
 
 > ### CBC bitflipping attacks
 >
-> Generate a random AES key.
+> Generate a random AES KEY.
 >
 > Combine your padding code and CBC code to write two functions.
 >
@@ -16,7 +16,7 @@
 >
 > The function should quote out the ";" and "=" characters.
 >
-> The function should then pad out the input to the 16-byte AES block length and encrypt it under the random AES key.
+> The function should then pad out the input to the 16-byte AES block length and encrypt it under the random AES KEY.
 >
 > The second function should decrypt the string and look for the characters ";admin=true;" (or, equivalently, decrypt, split the string on ";", convert each resulting string into 2-tuples, and look for the "admin" tuple).
 >
@@ -24,12 +24,12 @@
 >
 > If you've written the first function properly, it should _not_ be possible to provide user input to it that will generate the string the second function is looking for. We'll have to break the crypto to do that.
 >
-> Instead, modify the ciphertext (without knowledge of the AES key) to accomplish this.
+> Instead, modify the CIPHERTEXT (without knowledge of the AES KEY) to accomplish this.
 >
-> You're relying on the fact that in CBC mode, a 1-bit error in a ciphertext block:
+> You're relying on the fact that in CBC mode, a 1-bit error in a CIPHERTEXT block:
 >
 > -   Completely scrambles the block the error occurs in
-> -   Produces the identical 1-bit error(/edit) in the next ciphertext block.
+> -   Produces the identical 1-bit error(/edit) in the next CIPHERTEXT block.
 >
 > > ### Stop and think for a second.
 > > Before you implement this attack, answer this question: why does CBC mode have this property?

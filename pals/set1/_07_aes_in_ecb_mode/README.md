@@ -2,13 +2,13 @@
 
 > ### AES in ECB mode
 >
-> The Base64-encoded content [in this file](https://cryptopals.com/static/challenge-data/7.txt) has been encrypted via AES-128 in ECB mode under the key
+> The Base64-encoded content [in this file](https://cryptopals.com/static/challenge-data/7.txt) has been encrypted via AES-128 in ECB mode under the KEY
 >
 >     "YELLOW SUBMARINE".
 >
 > (case-sensitive, without the quotes; exactly 16 characters; I like "YELLOW SUBMARINE" because it's exactly 16 bytes long, and now you do too).
 >
-> Decrypt it. You know the key, after all.
+> Decrypt it. You know the KEY, after all.
 >
 > Easiest way: use OpenSSL::Cipher and give it AES-128-ECB as the cipher.
 >

@@ -4,10 +4,10 @@
 >
 > [In this file](https://cryptopals.com/static/challenge-data/20.txt) find a similar set of Base64'd plaintext. Do with them exactly what you did with the first, but solve the problem differently.
 >
-> Instead of making spot guesses at to known plaintext, treat the collection of ciphertexts the same way you would repeating-key XOR.
+> Instead of making spot guesses at to known plaintext, treat the collection of ciphertexts the same way you would repeating-KEY XOR.
 >
-> Obviously, CTR encryption appears different from repeated-key XOR, _but with a fixed nonce they are effectively the same thing._
+> Obviously, CTR encryption appears different from repeated-KEY XOR, _but with a fixed nonce they are effectively the same thing._
 >
-> To exploit this: take your collection of ciphertexts and truncate them to a common length (the length of the smallest ciphertext will work).
+> To exploit this: take your collection of ciphertexts and truncate them to a common length (the length of the smallest CIPHERTEXT will work).
 >
-> Solve the resulting concatenation of ciphertexts as if for repeating- key XOR, with a key size of the length of the ciphertext you XOR'd.
+> Solve the resulting concatenation of ciphertexts as if for repeating- KEY XOR, with a KEY size of the length of the CIPHERTEXT you XOR'd.

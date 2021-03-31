@@ -19,9 +19,9 @@
 >       MDAwMDA4b2xsaW4nIGluIG15IGZpdmUgcG9pbnQgb2g=
 >       MDAwMDA5aXRoIG15IHJhZy10b3AgZG93biBzbyBteSBoYWlyIGNhbiBibG93
 >
-> ... generate a random AES key (which it should save for all future encryptions), pad the string out to the 16-byte AES block size and CBC-encrypt it under that key, providing the caller the ciphertext and IV.
+> ... generate a random AES KEY (which it should save for all future encryptions), pad the string out to the 16-byte AES block size and CBC-encrypt it under that KEY, providing the caller the CIPHERTEXT and IV.
 >
-> The second function should consume the ciphertext produced by the first function, decrypt it, check its padding, and return true or false depending on whether the padding is valid.
+> The second function should consume the CIPHERTEXT produced by the first function, decrypt it, check its padding, and return true or false depending on whether the padding is valid.
 >
 > > ### What you're doing here.
 > > This pair of functions approximates AES-CBC encryption as its deployed serverside in web applications; the second function models the server's consumption of an encrypted session token, as if it was a cookie.
@@ -32,7 +32,7 @@
 >
 > You can find 100 web pages on how this attack works, so I won't re-explain it. What I'll say is this:
 >
-> The fundamental insight behind this attack is that the byte 01h is valid padding, and occur in 1/256 trials of "randomized" plaintexts produced by decrypting a tampered ciphertext.
+> The fundamental insight behind this attack is that the byte 01h is valid padding, and occur in 1/256 trials of "randomized" plaintexts produced by decrypting a tampered CIPHERTEXT.
 >
 > 02h in isolation is _not_ valid padding.
 >

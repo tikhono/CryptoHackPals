@@ -13,6 +13,7 @@ members = [
     "hacks/block_ciphers/aes/confusion_through_substitution",
     "hacks/block_ciphers/aes/diffusion_through_permutation",
     "hacks/block_ciphers/aes/bringing_it_all_together",
+    "hacks/block_ciphers/block_cipher_modes/passwords_as_keys",
     "pals/set1/_01_convert_hex_to_base_64",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",

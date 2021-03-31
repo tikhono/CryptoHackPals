@@ -8,7 +8,7 @@
 >
 > ... decrypts to something approximating English in CTR mode, which is an AES block cipher mode that turns AES into a stream cipher, with the following parameters:
 >
->           key=YELLOW SUBMARINE
+>           KEY=YELLOW SUBMARINE
 >           nonce=0
 >           format=64 bit unsigned little endian nonce,
 >                  64 bit little endian block count (byte count / 16)
