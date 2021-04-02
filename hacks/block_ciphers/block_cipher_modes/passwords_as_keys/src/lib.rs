@@ -6,7 +6,7 @@ mod tests {
     use std::io::{BufRead, BufReader, BufWriter};
 
     #[test]
-    fn it_works() {
+    fn capture_the_flag() {
         use std::io::Write;
 
         use curl::easy::Easy;
