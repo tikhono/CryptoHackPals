@@ -1,3 +1,5 @@
+use ascii::IntoAsciiString;
+
 pub fn get_cipher_text(plaintext: String) -> String {
     use curl::easy::Easy;
     let mut data = Vec::new();
@@ -26,55 +28,64 @@ pub fn get_cipher_text(plaintext: String) -> String {
     ciphertext
 }
 
-pub fn recover_byte(target: String, guess: String) -> Option<String> {
+pub fn recover_byte(
+    target: String,
+    guess: String,
+    block_number: usize,
+    block_size: usize,
+) -> Option<String> {
     for i in 0..255 {
         let byte = hex::encode([i]);
         let current_guess = get_cipher_text(guess.clone() + &*byte);
-        if target[0..31] == current_guess[0..31] {
-            /*
-            println!("{}", byte);
-            println!(
-                "{} {}",
-                target.get(0..31).unwrap(),
-                target.get(31..).unwrap()
-            );
-            println!(
-                "{} {}",
-                current_guess.get(0..31).unwrap(),
-                current_guess.get(31..).unwrap()
-            );
-
-             */
+        if target[..block_size * 2 * (block_number + 1)]
+            == current_guess[..block_size * 2 * (block_number + 1)]
+        {
             return Some(byte);
         }
     }
     None
 }
 
+pub fn receive_blocks(blocks_number: usize, block_size: usize) -> String {
+    let mut append = "00".to_string().repeat(block_size * (blocks_number + 1));
+    let mut plaintext = "".to_string();
+
+    for _i in 0..block_size * (blocks_number + 1) - 1 {
+        append = append.get(2..).unwrap().to_string();
+        plaintext.push_str(
+            &recover_byte(
+                get_cipher_text(append.clone()),
+                append.clone() + &*plaintext,
+                blocks_number,
+                block_size,
+            )
+            .unwrap(),
+        );
+        println!(
+            "{}",
+            hex::decode(plaintext.clone())
+                .unwrap()
+                .into_ascii_string()
+                .unwrap()
+                .to_string()
+        );
+    }
+    hex::decode(plaintext.clone())
+        .unwrap()
+        .into_ascii_string()
+        .unwrap()
+        .to_string()
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::{get_cipher_text, recover_byte};
+    use crate::receive_blocks;
     use ascii::IntoAsciiString;
 
     #[test]
     fn capture_the_flag() {
-        let number_of_blocks = 3;
-        let block_size = 16;
         let mut plaintext = "".to_string();
-        let mut append = "00".to_string().repeat(16);
-        for _i in 0..(number_of_blocks * block_size) {
-            append = append.get(2..).unwrap().to_string();
-            plaintext.push_str(
-                &recover_byte(
-                    get_cipher_text(append.clone()),
-                    append.clone() + &*plaintext,
-                )
-                .unwrap(),
-            );
-            println!(
-                "{:?}",
-                hex::decode(plaintext.clone()).unwrap().into_ascii_string()
-            );
-        }
+        plaintext.push_str(&*receive_blocks(3, 16));
+        println!("{:?}", plaintext);
     }
 }
