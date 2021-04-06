@@ -10,9 +10,15 @@ mod tests {
         use std::io::Write;
 
         use curl::easy::Easy;
-        let file_read = File::open("/home/vorrol/Projects/CryptoHackPals/hacks/block_ciphers/block_cipher_modes/passwords_as_keys/md5.txt").expect("file not found!");
+        let file_read = File::open(
+            "../../../../hacks/block_ciphers/block_cipher_modes/passwords_as_keys/md5.txt",
+        )
+        .expect("file not found!");
         let reader = BufReader::new(file_read);
-        let file_write =  File::create("/home/vorrol/Projects/CryptoHackPals/hacks/block_ciphers/block_cipher_modes/passwords_as_keys/out.txt").expect("couldn't create!");
+        let file_write = File::create(
+            "../../../../hacks/block_ciphers/block_cipher_modes/passwords_as_keys/out.txt",
+        )
+        .expect("couldn't create!");
         let mut writer = BufWriter::new(file_write);
         let addr = "http://aes.cryptohack.org/passwords_as_keys/decrypt/c92b7734070205bdf6c0087a751466ec13ae15e6f1bcdd3f3a535ec0f4bbae66/".to_string();
         for (i, line) in reader.lines().enumerate() {
