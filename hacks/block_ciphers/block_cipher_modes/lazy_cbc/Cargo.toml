@@ -1,0 +1,14 @@
+[package]
+name = "lazy_cbc"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+curl = ""
+hex = "0.4"
+ascii = ""
+_02_fixed_xor = {path = "../../../../pals/set1/_02_fixed_xor"}
+ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}

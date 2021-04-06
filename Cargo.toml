@@ -16,6 +16,8 @@ members = [
     "hacks/block_ciphers/block_cipher_modes/passwords_as_keys",
     "hacks/block_ciphers/block_cipher_modes/ecb_oracle",
     "hacks/block_ciphers/block_cipher_modes/symmetry",
+    "hacks/block_ciphers/block_cipher_modes/ecb_cbc_wtf",
+    "hacks/block_ciphers/block_cipher_modes/lazy_cbc",
     "pals/set1/_01_convert_hex_to_base_64",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",
