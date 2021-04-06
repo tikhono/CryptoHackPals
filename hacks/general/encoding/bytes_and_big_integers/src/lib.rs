@@ -18,8 +18,6 @@ pub fn decode(str: &str) -> String {
 #[cfg(test)]
 mod tests {
     use crate::decode;
-    use ascii::IntoAsciiString;
-    use uint::construct_uint;
 
     #[test]
     fn capture_the_flag() {

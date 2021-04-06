@@ -37,7 +37,6 @@ mod tests {
             let event = connection.read().expect("Read Error");
             match event {
                 TelnetEvent::Data(buffer) => {
-                    //println!("{:?}", buffer.clone().into_vec().into_ascii_string());
                     let resp: Response = serde_json::from_slice(&(*buffer)).unwrap_or(Response {
                         r#type: "utf-8".to_string(),
                         encoded: "".to_string(),
@@ -65,7 +64,6 @@ mod tests {
                             .to_string(),
                         _ => "".to_string(),
                     };
-                    //println!("{:?}", string);
                     let answ = json!({ "decoded": string.as_str()});
                     connection
                         .write(&to_vec(&answ).unwrap())
