@@ -30,34 +30,36 @@ pub fn score_text(text: String) -> u8 {
     }
 }
 
+pub fn decode_single_byte_xor(ciphertext: String) -> Vec<String> {
+    use ascii::IntoAsciiString;
+
+    let mut decoded: Vec<String> = Vec::new();
+    for i in 0u8..=255 {
+        let text = single_byte_xor(ciphertext.clone(), i as char);
+        if score_text(text.clone()) != 0 {
+            decoded.push(
+                hex::decode(text)
+                    .unwrap()
+                    .into_ascii_string()
+                    .unwrap()
+                    .to_string(),
+            );
+        }
+    }
+    decoded
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::{score_text, single_byte_xor};
+    use crate::decode_single_byte_xor;
 
     #[test]
     fn capture_the_flag() {
-        for i in 0u8..=255 {
-            if score_text(single_byte_xor(
-                "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736".to_string(),
-                i as char,
-            )) == 0
-            {
-                continue;
-            }
-
-            println!(
-                "Key is {:#010b} and plaintext is {:?}",
-                i,
-                std::str::from_utf8(
-                    &*hex::decode(single_byte_xor(
-                        "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
-                            .to_string(),
-                        i as char
-                    ))
-                    .unwrap()
-                )
-                .unwrap()
-            );
+        let plaintexts = decode_single_byte_xor(
+            "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736".to_string(),
+        );
+        for plaintext in plaintexts {
+            println!("{}", plaintext);
         }
     }
 }
