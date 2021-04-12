@@ -14,3 +14,12 @@
 >
 > > ### Achievement Unlocked
 > > You now have our permission to make "ETAOIN SHRDLU" jokes on Twitter.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _03_single_byte_xor_cipher --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package _03_single_byte_xor_cipher --lib tests::capture_the_flag -- --exact

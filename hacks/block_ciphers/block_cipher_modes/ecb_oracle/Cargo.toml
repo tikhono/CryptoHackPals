@@ -8,6 +8,5 @@ edition = "2018"
 
 [dependencies]
 curl = ""
-rust-crypto = ""
 hex = "0.4"
 ascii = ""
