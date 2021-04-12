@@ -18,13 +18,13 @@ pub fn score_text(text: String) -> u8 {
     };
 
     for i in 0..text.len() {
-        if !text[i].is_ascii_printable() {
+        if !(text[i].is_ascii_printable() || text[i] == ascii::AsciiChar::LineFeed) {
             return 0;
         }
     }
     let info = detect(text.as_ref()).unwrap();
-    if info.lang() == Lang::Eng {
-        (info.confidence() * 100.0) as u8
+    if info.lang() == Lang::Eng && info.confidence() >= 0.5 {
+        (info.confidence().round() * 100.0) as u8
     } else {
         0
     }

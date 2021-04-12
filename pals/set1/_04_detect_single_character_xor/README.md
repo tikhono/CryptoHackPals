@@ -7,3 +7,12 @@
 > Find it.
 >
 > (Your code from #3 should help.)
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _04_detect_single_character_xor --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package _04_detect_single_character_xor --lib tests::capture_the_flag -- --exact
