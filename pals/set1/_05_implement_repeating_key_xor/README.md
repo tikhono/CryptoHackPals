@@ -17,3 +17,12 @@
 >     a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f
 >
 > Encrypt a bunch of stuff using your repeating-KEY XOR function. Encrypt your mail. Encrypt your password file. Your .sig file. Get a feel for it. I promise, we aren't wasting your time with this.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _05_implement_repeating_key_xor --lib tests
+>
+> Test repeating_key_xor:
+>
+>     cargo test --package _05_implement_repeating_key_xor --lib tests::test_repeating_key_xor -- --exact

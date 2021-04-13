@@ -27,7 +27,7 @@ mod tests {
                 if ciphertext.len() != target_len {
                     print!("{}", byte as char);
                     io::stdout().flush().unwrap();
-                    plaintext.push_str(&*hex::encode([byte]));
+                    plaintext.push_str(hex::encode([byte]).as_str());
                     break;
                 }
             }
