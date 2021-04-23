@@ -28,3 +28,21 @@
 >
 > > ### No, that's not a mistake.
 > > We get more tech support questions for this challenge than any of the other ones. We promise, there aren't any blatant errors in this text. In particular: the "wokka wokka!!!" edit distance really is 37.
+
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _06_break_repeating_key_xor --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package _06_break_repeating_key_xor --lib tests::capture_the_flag -- --exact
+> 
+> Test distance:
+>
+>     cargo test --package _06_break_repeating_key_xor --lib tests::test_distance -- --exact
+> 
+> Change rust toolchain:
+> 
+>     rustup override set nightly
