@@ -6,4 +6,11 @@
 >
 >     0e0b213f26041e480b26217f27342e175d0e070a3c5b103e2526217f27342e175d0e077e263451150104
 
-> I used online tool for this task. Its very similar to previous one. Just KEY is repeating pattern of xored values of flag and "crypto{...}"
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package you_either_know_xor_you_dont --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package you_either_know_xor_you_dont --lib tests::capture_the_flag -- --exact
