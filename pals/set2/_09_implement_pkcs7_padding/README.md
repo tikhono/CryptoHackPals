@@ -13,3 +13,13 @@
 > ... padded to 20 bytes would be:
 >
 >     "YELLOW SUBMARINE  \\x04\\x04\\x04\\x04"
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _02_fixed_xor --lib tests
+>
+> Test test_pad_yellow_submarine_20:
+>
+>     cargo test --package _09_implement_pkcs7_padding --lib tests::test_pad_yellow_submarine_20 -- --exact
+>
