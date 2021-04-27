@@ -20,3 +20,12 @@
 >       8146798528947 ≡ b mod 17
 >
 > The solution is the smaller of the two integers.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package modular_arithmetic_1 --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package modular_arithmetic_1 --lib tests::capture_the_flag -- --exact

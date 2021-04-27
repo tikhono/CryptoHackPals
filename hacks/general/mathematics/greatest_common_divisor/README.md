@@ -17,3 +17,12 @@
 > Try coding it up; it's only a couple of lines. Use `a = 12, b = 8` to test it.
 >
 > Now calculate `gcd(a,b)` for `a = 66528, b = 52920` and enter it below.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package greatest_common_divisor --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package greatest_common_divisor --lib tests::capture_the_flag -- --exact

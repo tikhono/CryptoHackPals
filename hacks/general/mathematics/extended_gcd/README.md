@@ -13,3 +13,12 @@
 >     p * u + q * v = gcd(p,q)
 >
 > > Knowing that `p,q` are prime, what would you expect `gcd(p,q)` to be?
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package greatest_common_divisor --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package greatest_common_divisor --lib tests::capture_the_flag -- --exact

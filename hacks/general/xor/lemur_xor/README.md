@@ -6,4 +6,11 @@
 >
 > [flag.png](https://cryptohack.org/static/challenges/flag_7ae18c704272532658c10b5faad06d74.png)
 
-> I've used online tool to xor 2 images to get secret KEY. I also could xor them by converting into a stream of bytes and xor each channel individually.
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package lemur_xor --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package lemur_xor --lib tests::capture_the_flag -- --exact

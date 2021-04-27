@@ -11,3 +11,12 @@
 > What is the inverse element: `3 * d ≡ 1 mod 13`?
 >
 > > Think about the little theorem we just worked with. How does this help you find the inverse of an element?
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package modular_inverting --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package modular_inverting --lib tests::capture_the_flag -- --exact

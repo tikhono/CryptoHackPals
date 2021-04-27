@@ -19,3 +19,12 @@
 > This interesting fact is known as Fermat's little theorem. We'll be needing this (and its generalisations) when we look at RSA cryptography.
 >
 > Now take the prime `p = 65537`. Calculate `27324678765465536 mod 65537`.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package modular_arithmetic_2 --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package modular_arithmetic_2 --lib tests::capture_the_flag -- --exact
