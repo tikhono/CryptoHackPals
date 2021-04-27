@@ -2,7 +2,7 @@ pub fn get_response(addr: String) -> String {
     use curl::easy::Easy;
     let mut data = Vec::new();
     let mut handle = Easy::new();
-    handle.url(&*addr).unwrap();
+    handle.url(&addr).unwrap();
     {
         let mut transfer = handle.transfer();
         transfer
@@ -13,7 +13,7 @@ pub fn get_response(addr: String) -> String {
             .unwrap();
         transfer.perform().unwrap();
     }
-    let result = std::str::from_utf8(&*data)
+    let result = std::str::from_utf8(&data)
         .unwrap()
         .strip_prefix("{\"")
         .unwrap()
@@ -45,12 +45,12 @@ mod tests {
         let addr = "http://aes.cryptohack.org/ecbcbcwtf/decrypt/".to_string() + ciphertext2 + "/";
         let derive_plaintext_2 = get_response(addr);
 
-        let plaintext_1 = fixed_xor(&*derive_plaintext_1, iv);
-        let plaintext_2 = fixed_xor(&*derive_plaintext_2, ciphertext1);
+        let plaintext_1 = fixed_xor(&derive_plaintext_1, iv);
+        let plaintext_2 = fixed_xor(&derive_plaintext_2, ciphertext1);
 
         println!(
             "{}",
-            hex::decode(plaintext_1 + &*plaintext_2)
+            hex::decode(plaintext_1 + &plaintext_2)
                 .unwrap()
                 .into_ascii_string()
                 .unwrap()

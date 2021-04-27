@@ -7,9 +7,9 @@ pub fn get_cipher_text(plaintext: String) -> String {
     let mut data = Vec::new();
     let mut handle = Easy::new();
     let mut addr = "http://aes.cryptohack.org/ecb_oracle/encrypt/".to_string();
-    addr.push_str(&*plaintext);
+    addr.push_str(&plaintext);
     addr.push_str("/");
-    handle.url(&*addr).unwrap();
+    handle.url(&addr).unwrap();
     {
         let mut transfer = handle.transfer();
         transfer
@@ -20,7 +20,7 @@ pub fn get_cipher_text(plaintext: String) -> String {
             .unwrap();
         transfer.perform().unwrap();
     }
-    let ciphertext = std::str::from_utf8(&*data)
+    let ciphertext = std::str::from_utf8(&data)
         .unwrap()
         .strip_prefix("{\"ciphertext\":\"")
         .unwrap()
@@ -38,7 +38,7 @@ pub fn recover_byte(
 ) -> Option<String> {
     for i in 0x20..=0x7E {
         let byte = hex::encode([i]);
-        let current_guess = get_cipher_text(guess.clone() + &*byte);
+        let current_guess = get_cipher_text(guess.clone() + &byte);
         if target[..block_size * 2 * (block_number + 1)]
             == current_guess[..block_size * 2 * (block_number + 1)]
         {
@@ -58,7 +58,7 @@ pub fn receive_blocks(blocks_number: usize, block_size: usize) -> String {
         append = append.get(2..).unwrap().to_string();
         let byte = recover_byte(
             get_cipher_text(append.clone()),
-            append.clone() + &*plaintext,
+            append.clone() + &plaintext,
             blocks_number,
             block_size,
         );
@@ -68,7 +68,7 @@ pub fn receive_blocks(blocks_number: usize, block_size: usize) -> String {
                 break;
             }
             Some(char) => {
-                plaintext.push_str(&*char);
+                plaintext.push_str(&char);
             }
         }
     }
@@ -86,7 +86,7 @@ mod tests {
     #[test]
     fn capture_the_flag() {
         let mut plaintext = "".to_string();
-        plaintext.push_str(&*receive_blocks(2, 16));
+        plaintext.push_str(&receive_blocks(2, 16));
         println!("{:?}", plaintext);
     }
 }

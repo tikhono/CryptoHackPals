@@ -12,16 +12,16 @@ mod tests {
 
         for _i in 0..32 {
             let addr = "http://aes.cryptohack.org/ctrime/encrypt/".to_string()
-                + &*plaintext.get(plaintext.len() - 10..).unwrap()
-                + &*"00"
+                + &plaintext.get(plaintext.len() - 10..).unwrap()
+                + &"00"
                 + "/";
             let ciphertext = get_response(addr);
             let target_len = ciphertext.len();
 
             for byte in 0x20..=0x7E {
                 let addr = "http://aes.cryptohack.org/ctrime/encrypt/".to_string()
-                    + &*plaintext.get(plaintext.len() - 10..).unwrap()
-                    + &*hex::encode([byte])
+                    + &plaintext.get(plaintext.len() - 10..).unwrap()
+                    + &hex::encode([byte])
                     + "/";
                 let ciphertext = get_response(addr);
                 if ciphertext.len() != target_len {

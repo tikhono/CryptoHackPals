@@ -27,9 +27,9 @@ mod tests {
             encryptor.input_str(line.unwrap().as_str());
             let mut easy = Easy::new();
             let mut url = addr.clone();
-            url.push_str(&*encryptor.result_str());
+            url.push_str(&encryptor.result_str());
             url.push_str("/");
-            easy.url(&*url).unwrap();
+            easy.url(&url).unwrap();
             {
                 let mut transfer = easy.transfer();
                 transfer

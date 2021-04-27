@@ -1,10 +1,10 @@
 mod tests {
-    use ascii::IntoAsciiString;
-    use ecb_cbc_wtf::get_response;
-    use std::collections::BTreeMap;
 
     #[test]
     fn capture_the_flag() {
+        use ascii::IntoAsciiString;
+        use ecb_cbc_wtf::get_response;
+        use std::collections::BTreeMap;
         let mut map = BTreeMap::new();
 
         for _i in 0..200 {

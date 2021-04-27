@@ -46,13 +46,13 @@ mod tests {
                             let resp: ResponseUtf = serde_json::from_slice(&buffer).unwrap();
                             resp.encoded.into_ascii_string().unwrap().to_string()
                         }
-                        "rot13" => rot13(&*resp.encoded),
-                        "hex" => hex::decode(&*resp.encoded)
+                        "rot13" => rot13(&resp.encoded),
+                        "hex" => hex::decode(&resp.encoded)
                             .unwrap()
                             .into_ascii_string()
                             .unwrap()
                             .to_string(),
-                        "base64" => base64::decode(&*resp.encoded)
+                        "base64" => base64::decode(&resp.encoded)
                             .unwrap()
                             .into_ascii_string()
                             .unwrap()

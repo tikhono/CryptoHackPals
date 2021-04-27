@@ -10,7 +10,7 @@ mod tests {
         let flag_xor_key1_xor_key2_xor_key3 =
             "04ee9855208a2cd59091d04767ae47963170d1660df7f56f5faf";
         let flag = hex::decode(fixed_xor(
-            &*fixed_xor(flag_xor_key1_xor_key2_xor_key3, key2_xor_key3),
+            &fixed_xor(flag_xor_key1_xor_key2_xor_key3, key2_xor_key3),
             key1,
         ))
         .unwrap()

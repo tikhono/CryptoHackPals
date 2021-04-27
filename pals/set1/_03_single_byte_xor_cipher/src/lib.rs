@@ -2,8 +2,8 @@ pub fn single_byte_xor(ciphertext: String, key: char) -> String {
     use _02_fixed_xor::fixed_xor;
 
     fixed_xor(
-        &*ciphertext,
-        &*hex::encode(key.to_string().repeat(ciphertext.len())),
+        &ciphertext,
+        &hex::encode(key.to_string().repeat(ciphertext.len())),
     )
 }
 

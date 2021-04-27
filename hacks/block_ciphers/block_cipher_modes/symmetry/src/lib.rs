@@ -8,7 +8,7 @@ mod tests {
         let mut data = Vec::new();
         let mut handle = Easy::new();
         let addr = "http://aes.cryptohack.org/symmetry/encrypt_flag/".to_string();
-        handle.url(&*addr).unwrap();
+        handle.url(&addr).unwrap();
         {
             let mut transfer = handle.transfer();
             transfer
@@ -19,7 +19,7 @@ mod tests {
                 .unwrap();
             transfer.perform().unwrap();
         }
-        let string = std::str::from_utf8(&*data)
+        let string = std::str::from_utf8(&data)
             .unwrap()
             .strip_prefix("{\"ciphertext\":\"")
             .unwrap()
@@ -35,7 +35,7 @@ mod tests {
         addr.push_str("/");
         let mut data = Vec::new();
 
-        handle.url(&*addr).unwrap();
+        handle.url(&addr).unwrap();
         {
             let mut transfer = handle.transfer();
             transfer
@@ -46,7 +46,7 @@ mod tests {
                 .unwrap();
             transfer.perform().unwrap();
         }
-        let string = std::str::from_utf8(&*data)
+        let string = std::str::from_utf8(&data)
             .unwrap()
             .strip_prefix("{\"ciphertext\":\"")
             .unwrap()

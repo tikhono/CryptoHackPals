@@ -19,7 +19,6 @@ members = [
     "hacks/block_ciphers/aes/round_keys",
     "hacks/block_ciphers/aes/confusion_through_substitution",
     "hacks/block_ciphers/aes/diffusion_through_permutation",
-    "hacks/block_ciphers/aes/bringing_it_all_together",
     "hacks/block_ciphers/block_cipher_modes/passwords_as_keys",
     "hacks/block_ciphers/block_cipher_modes/ecb_oracle",
     "hacks/block_ciphers/block_cipher_modes/symmetry",
