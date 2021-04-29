@@ -14,3 +14,13 @@
 > You get the idea. Go get coffee while it runs. Or just simulate the passage of time, although you're missing some of the fun of this exercise if you do that.
 >
 > From the 32 bit RNG output, discover the seed.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _22_crack_an_mt19937_seed --lib tests
+>
+> Test seed_crack:
+>
+>     cargo test --package _22_crack_an_mt19937_seed --lib tests::test_seed_crack -- --exact
+>

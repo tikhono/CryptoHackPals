@@ -19,7 +19,7 @@
 >
 >     cargo test --package _02_fixed_xor --lib tests
 >
-> Test test_pad_yellow_submarine_20:
+> Test pad_yellow_submarine_20:
 >
 >     cargo test --package _09_implement_pkcs7_padding --lib tests::test_pad_yellow_submarine_20 -- --exact
 >

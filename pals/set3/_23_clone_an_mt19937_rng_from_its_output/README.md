@@ -18,3 +18,13 @@
 >
 > > ### Stop and think for a second.
 > > How would you modify MT19937 to make this attack hard? What would happen if you subjected each tempered output to a cryptographic hash?
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _23_clone_an_mt19937_rng_from_its_output --lib tests
+>
+> Test clone_mt:
+>
+>     cargo test --package _23_clone_an_mt19937_rng_from_its_output --lib tests::test_clone_mt -- --exact
+>
