@@ -17,7 +17,7 @@
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package _02_fixed_xor --lib tests
+>     cargo test --package _09_implement_pkcs7_padding --lib tests
 >
 > Test pad_yellow_submarine_20:
 >

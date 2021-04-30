@@ -10,7 +10,7 @@ mod tests {
             .expect("file not found!");
         let reader = BufReader::new(file_read);
 
-        for (_i, line) in reader.lines().enumerate() {
+        for (_, line) in reader.lines().enumerate() {
             let line = line.unwrap();
             let mut map = HashMap::new();
 
