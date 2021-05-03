@@ -39,7 +39,7 @@
 >
 >     cargo test --package _12_byte_at_a_time_ecb_decryption_simple --lib tests
 >
-> > Capture the flag:
+> Capture the flag:
 >
 >     cargo test --package _12_byte_at_a_time_ecb_decryption_simple --lib tests::capture_the_flag -- --exact
 >

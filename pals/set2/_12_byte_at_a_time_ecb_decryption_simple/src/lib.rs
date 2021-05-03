@@ -11,7 +11,11 @@ pub fn get_cipher_text(plaintext: String) -> String {
     let mut plaintext = hex::decode(plaintext).unwrap();
     plaintext.append(&mut "YELLOWSUBMARINE".as_bytes().to_vec());
 
-    hex::encode(unsafe { encrypt(cipher, &KEY, None, &plaintext).unwrap().as_slice() })
+    hex::encode(
+        encrypt(cipher, unsafe { &KEY }, None, &plaintext)
+            .unwrap()
+            .as_slice(),
+    )
 }
 
 pub fn recover_byte(

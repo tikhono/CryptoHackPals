@@ -33,3 +33,13 @@
 >
 > > ### Stop and think for a second.
 > > Before you implement this attack, answer this question: why does CBC mode have this property?
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _16_cbc_bitflipping_attacks --lib tests
+>
+> Capture the flag:
+>
+>     cargo test --package _16_cbc_bitflipping_attacks --lib tests::capture_the_flag -- --exact
+>
