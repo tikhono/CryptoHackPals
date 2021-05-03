@@ -33,3 +33,13 @@
 >
 > > ### Congratulations.
 > > This is the first challenge we've given you whose solution will break real crypto. Lots of people know that when you encrypt something in ECB mode, you can see penguins through it. Not so many of them can _decrypt the contents of those ciphertexts_, and now you can. If our experience is any guideline, this attack will get you code execution in security tests about once a year.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _12_byte_at_a_time_ecb_decryption_simple --lib tests
+>
+> > Capture the flag:
+>
+>     cargo test --package _12_byte_at_a_time_ecb_decryption_simple --lib tests::capture_the_flag -- --exact
+>

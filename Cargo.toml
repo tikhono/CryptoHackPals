@@ -33,7 +33,6 @@ members = [
     "pals/set1/_06_break_repeating_key_xor",
     "pals/set1/_08_detect_aes_in_ecb_mode",
     "pals/set2/_09_implement_pkcs7_padding",
-    "pals/set2/_10_implement_cbc_mode",
     "pals/set2/_11_an_ecb_cbc_detection_oracle",
     "pals/set2/_12_byte_at_a_time_ecb_decryption_simple",
     "pals/set2/_13_ecb_cut_and_paste",
