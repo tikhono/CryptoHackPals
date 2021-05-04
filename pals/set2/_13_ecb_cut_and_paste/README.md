@@ -40,3 +40,25 @@
 > 2.  Decrypt the encoded user profile and parse it.
 >
 > Using only the user input to profile\_for() (as an oracle to generate "valid" ciphertexts) and the ciphertexts themselves, make a role=admin profile.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _13_ecb_cut_and_paste --lib tests
+>
+> Test parse:
+>
+>     cargo test --package _13_ecb_cut_and_paste --lib tests::test_parse -- --exact
+>
+> Test profile_for:
+>
+>     cargo test --package _13_ecb_cut_and_paste --lib tests::test_profile_for -- --exact
+>
+> Test oracles:
+>
+>     cargo test --package _13_ecb_cut_and_paste --lib tests::test_oracles -- --exact
+>
+> Capture the flag:
+>
+>     cargo test --package _13_ecb_cut_and_paste --lib tests::capture_the_flag -- --exact
+>

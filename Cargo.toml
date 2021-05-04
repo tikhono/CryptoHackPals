@@ -36,7 +36,6 @@ members = [
     "pals/set2/_11_an_ecb_cbc_detection_oracle",
     "pals/set2/_12_byte_at_a_time_ecb_decryption_simple",
     "pals/set2/_13_ecb_cut_and_paste",
-    "pals/set2/_14_byte_at_a_time_ecb_decryption_harder",
     "pals/set2/_15_pkcs7_padding_validation",
     "pals/set2/_16_cbc_bitflipping_attacks",
     "pals/set3/_17_the_cbc_padding_oracle",
