@@ -10,7 +10,7 @@ pub fn sleep_mersenne() -> u64 {
     let mut sys_rng = rand::thread_rng();
 
     thread::sleep(time::Duration::from_secs(
-        sys_rng.gen_range(MIN_SLEEP_TIME, MAX_SLEEP_TIME),
+        sys_rng.gen_range(MIN_SLEEP_TIME..MAX_SLEEP_TIME),
     ));
 
     //let seed = time::Instant::now().elapsed().as_secs();
@@ -21,7 +21,7 @@ pub fn sleep_mersenne() -> u64 {
         .as_secs();
 
     thread::sleep(time::Duration::from_secs(
-        sys_rng.gen_range(MIN_SLEEP_TIME, MAX_SLEEP_TIME),
+        sys_rng.gen_range(MIN_SLEEP_TIME..MAX_SLEEP_TIME),
     ));
 
     let mut x = MT19937::init(seed);

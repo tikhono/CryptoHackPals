@@ -10,23 +10,21 @@ mod tests {
         // assuming flag starts with "crypto{" lets try to figure out next bytes
         let mut plaintext = "63727970746f7b".to_string();
 
-        for _i in 0..32 {
+        for _ in 0..32 {
             let addr = "http://aes.cryptohack.org/ctrime/encrypt/".to_string()
-                + &plaintext.get(plaintext.len() - 10..).unwrap()
-                + &"00"
-                + "/";
+                + plaintext.get(plaintext.len() - 10..).unwrap()
+                + "00/";
             let ciphertext = get_response(addr);
             let target_len = ciphertext.len();
 
             for byte in 0x20..=0x7E {
+                //This is a range of printable ascii characters
                 let addr = "http://aes.cryptohack.org/ctrime/encrypt/".to_string()
-                    + &plaintext.get(plaintext.len() - 10..).unwrap()
+                    + plaintext.get(plaintext.len() - 10..).unwrap()
                     + &hex::encode([byte])
                     + "/";
                 let ciphertext = get_response(addr);
                 if ciphertext.len() != target_len {
-                    print!("{}", byte as char);
-                    io::stdout().flush().unwrap();
                     plaintext.push_str(hex::encode([byte]).as_str());
                     break;
                 }
@@ -37,7 +35,10 @@ mod tests {
         }
         println!(
             "{}",
-            hex::decode(plaintext).unwrap().into_ascii_string().unwrap()
+            hex::decode(plaintext)
+                .expect("Failed to decode hex plaintext")
+                .into_ascii_string()
+                .expect("Failed to convert into ascii string")
         );
     }
 }
