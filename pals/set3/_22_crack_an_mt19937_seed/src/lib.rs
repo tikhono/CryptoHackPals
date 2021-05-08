@@ -13,8 +13,6 @@ pub fn sleep_mersenne() -> u64 {
         sys_rng.gen_range(MIN_SLEEP_TIME..MAX_SLEEP_TIME),
     ));
 
-    //let seed = time::Instant::now().elapsed().as_secs();
-
     let seed = time::SystemTime::now()
         .duration_since(SystemTime::UNIX_EPOCH)
         .unwrap()

@@ -1,6 +1,6 @@
 pub fn pad(data: &[u8], block_size: u8) -> Vec<u8> {
     let pad_size = block_size - data.len() as u8 % block_size;
-    let mut padded = (*data).to_vec();
+    let mut padded = data.to_vec();
 
     for _ in 0..pad_size {
         padded.push(pad_size);

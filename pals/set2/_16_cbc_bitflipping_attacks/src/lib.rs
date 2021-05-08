@@ -17,7 +17,6 @@ fn oracle(plaintext: &[u8]) -> Vec<u8> {
 
 fn bitflip(ciphertext: &[u8]) -> Vec<u8> {
     let mut ciphertext = ciphertext.to_vec();
-    ciphertext[37] ^= 1;
     ciphertext[43] ^= 1;
     ciphertext
 }
