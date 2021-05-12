@@ -9,4 +9,6 @@ edition = "2018"
 [dependencies]
 hex = "0.4"
 ascii = ""
+itertools = ""
 ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}
+_06_break_repeating_key_xor = {path = "../../../../pals/set1/_06_break_repeating_key_xor"}

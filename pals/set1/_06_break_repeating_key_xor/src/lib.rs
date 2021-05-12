@@ -6,7 +6,7 @@ use itertools::Itertools;
 use std::cmp::min;
 use std::collections::BTreeMap;
 
-pub fn score_text(text: String) -> u8 {
+pub fn score_text(text: String) -> u32 {
     let text = hex::decode(text).unwrap();
     let text = match text.into_ascii_string() {
         Ok(ascii) => ascii,
@@ -21,18 +21,15 @@ pub fn score_text(text: String) -> u8 {
     let common = "etaoin shrdlu ETAOIN SHRDLU";
     let mut score = 0;
     for i in 0..text.len() {
-        if common
-            .find(std::str::from_utf8(&[text.as_bytes()[i]]).unwrap())
-            .is_some()
-        {
+        if common.contains(std::str::from_utf8(&[text.as_bytes()[i]]).unwrap()) {
             score += 1;
         }
     }
     score
 }
 
-pub fn decode_single_byte_xor(ciphertext: String) -> BTreeMap<u8, String> {
-    let mut decoded: BTreeMap<u8, String> = BTreeMap::new();
+pub fn decode_single_byte_xor(ciphertext: String) -> BTreeMap<u32, String> {
+    let mut decoded: BTreeMap<u32, String> = BTreeMap::new();
     for i in 0u8..=255 {
         let text = single_byte_xor(ciphertext.clone(), i as char);
         let score = score_text(text.clone());

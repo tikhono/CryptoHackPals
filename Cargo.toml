@@ -38,8 +38,6 @@ members = [
     "pals/set2/_13_ecb_cut_and_paste",
     "pals/set2/_15_pkcs7_padding_validation",
     "pals/set2/_16_cbc_bitflipping_attacks",
-    "pals/set3/_17_the_cbc_padding_oracle",
-    "pals/set3/_18_implement_ctr_the_stream_cipher_mode",
     "pals/set3/_19_break_fixed_nonce_ctr_mode_usong_substitutions",
     "pals/set3/_20_break_fixed_nonce_ctr_statistically",
     "pals/set3/_21_implement_the_mt19937_mersenne_twister_rng",

@@ -64,3 +64,13 @@
 >
 > > ### Don't overthink it.
 > > Points for automating this, but part of the reason I'm having you do this is that I think this approach is suboptimal.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _19_break_fixed_nonce_ctr_mode_usong_substitutions --lib tests
+>
+> Test clone_mt:
+>
+>     cargo test --package _19_break_fixed_nonce_ctr_mode_usong_substitutions --lib tests::test_clone_mt -- --exact
+>

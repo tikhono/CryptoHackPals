@@ -13,3 +13,13 @@
 > Use the same idea to generate a random "password reset token" using MT19937 seeded from the current time.
 >
 > Write a function to check if any given password token is actually the product of an MT19937 PRNG seeded with the current time.
+
+> ### How to:
+> Run all tests from this package:
+>
+>     cargo test --package _24_create_the_mt_19937_stream_cipher_ans_break_it --lib tests
+>
+> Test clone_mt:
+>
+>     cargo test --package _24_create_the_mt_19937_stream_cipher_ans_break_it --lib tests::test_clone_mt -- --exact
+>
