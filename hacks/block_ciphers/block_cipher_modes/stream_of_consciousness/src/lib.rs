@@ -1,67 +1,8 @@
-#![feature(map_first_last)]
-
-use _06_break_repeating_key_xor::score_text;
 use ascii::IntoAsciiString;
 use ecb_cbc_wtf::get_response;
 use std::collections::BTreeMap;
 
-pub fn fixed_xor(l: &[u8], r: &[u8]) -> Vec<u8> {
-    let zipped = l.iter().zip(r.iter());
-    let mut xor = Vec::new();
-    for (l_byte, r_byte) in zipped {
-        xor.push(*l_byte ^ *r_byte);
-    }
-    xor
-}
-
-fn score_keystreams(texts: Vec<Vec<u8>>) -> Vec<u8> {
-    let longest_len = texts.iter().map(|x| x.len()).max().unwrap();
-
-    let mut keystream = Vec::new();
-
-    for i in 0..longest_len {
-        let column: Vec<u8> = texts.iter().filter_map(|x| x.get(i)).copied().collect();
-        println!("-----{}-----", i + 1);
-
-        let mut score = 0;
-        let mut byte = 0;
-        for guess in 0..=255u8 {
-            let current_score = score_text(hex::encode(fixed_xor(
-                &column,
-                (guess as char).to_string().repeat(column.len()).as_bytes(),
-            )));
-            if i == 5 {
-                println!(
-                    "{}  {}  |||{}|||",
-                    guess,
-                    current_score,
-                    String::from_utf8_lossy(&fixed_xor(
-                        &column,
-                        (guess as char).to_string().repeat(column.len()).as_bytes(),
-                    ))
-                    .chars()
-                    .nth(4)
-                    .unwrap()
-                );
-            }
-            if score < current_score {
-                score = current_score;
-                byte = guess;
-            }
-        }
-        if i == 5 {
-            keystream.push(0xf1);
-        } else if i == 14 {
-            keystream.push(0xfe);
-        } else {
-            keystream.push(byte);
-        }
-    }
-
-    keystream
-}
-
-fn recive_and_print_ciphertexts() {
+pub fn receive_and_print_ciphertexts() {
     let mut map = BTreeMap::new();
 
     for _ in 0..100 {
@@ -84,19 +25,12 @@ fn recive_and_print_ciphertexts() {
 }
 
 mod tests {
-    use crate::{fixed_xor, score_keystreams};
-    use _06_break_repeating_key_xor::decode_single_byte_xor;
+    use _19_break_fixed_nonce_ctr_mode_usong_substitutions::fixed_xor;
+    use _19_break_fixed_nonce_ctr_mode_usong_substitutions::score_keystreams;
 
     #[test]
     fn capture_the_flag() {
-        use _06_break_repeating_key_xor::break_repeating_key_xor;
-        use ascii::IntoAsciiString;
-        use ecb_cbc_wtf::get_response;
-        use itertools::Itertools;
-
-        #[test]
-        fn capture_another_flag() {
-            let texts = ["0666472831a644a06ae23e043e",
+        let texts = ["0666472831a644a06ae23e043e",
                 "0b66413758d15bb026e16b056935897a5d5a40a0",
                 "087d513758d15fb12be12756683d903547560de764ca",
                 "0d61506462dc41b821e42511213b903e157e44e27c8d6273081e",
@@ -117,20 +51,19 @@ mod tests {
                 "1d7b506474d144b638fe2e052d7a8a325c400ded71967e7f1b00e956f93f05f59cc208f92f6174e9fdc326440814b16d8ded9a7e2bee507dad429f54a4cfad1964886f51c262e269df1ece237c1df5c58278c69e99e6a958751bafbf024538e0bf6267b87373e3d92a81a266cd4768b430bbba95f2b21c",
                 "1e7b546331900cb525f96b19677a8a325c5d4afd309064770e47f81eb1714de98e872cbc272e61f2b5cb63090208f46c8abf857567f65761ad429d5bb29db11662993b1d8b78eb6eca5c9066341defcc8272ca8ecdabae0d685595f6164330eaba2168b3713ab1983780e732d14a2dad78b3b393e8fc7b23bc1a1a502077279391487ac916d296f29ca5a4fa6a59f332440d2f38a9dd4b74b81727e3cb4fc6",].to_vec();
 
-            let bytes: Vec<Vec<u8>> = texts
-                .iter()
-                .map(|x| hex::decode(x).expect("invalid base64"))
-                .collect();
+        let bytes: Vec<Vec<u8>> = texts
+            .iter()
+            .map(|x| hex::decode(x).expect("invalid base64"))
+            .collect();
 
-            let key = score_keystreams(bytes.clone());
+        let key = score_keystreams(bytes.clone());
 
-            for text in bytes {
-                println!(
-                    "{}",
-                    String::from_utf8_lossy(&fixed_xor(&key.get(0..text.len()).unwrap(), &text))
-                );
-            }
-            println!();
+        for text in bytes {
+            println!(
+                "{}",
+                String::from_utf8_lossy(&fixed_xor(&key.get(0..text.len()).unwrap(), &text))
+            );
         }
+        println!();
     }
 }

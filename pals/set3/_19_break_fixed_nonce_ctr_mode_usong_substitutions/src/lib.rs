@@ -9,7 +9,7 @@ pub fn fixed_xor(l: &[u8], r: &[u8]) -> Vec<u8> {
     xor
 }
 
-fn score_keystreams(texts: Vec<Vec<u8>>) -> Vec<u8> {
+pub fn score_keystreams(texts: Vec<Vec<u8>>) -> Vec<u8> {
     let longest_len = texts.iter().map(|x| x.len()).max().unwrap();
 
     let mut keystream = Vec::new();
@@ -22,7 +22,7 @@ fn score_keystreams(texts: Vec<Vec<u8>>) -> Vec<u8> {
         for guess in 0..=255u8 {
             let current_score = score_text(hex::encode(fixed_xor(
                 &column,
-                (guess as char).to_string().repeat(column.len()).as_bytes(),
+                &[guess].to_vec().repeat(column.len()),
             )));
             if score < current_score {
                 score = current_score;
