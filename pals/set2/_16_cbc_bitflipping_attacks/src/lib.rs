@@ -1,4 +1,5 @@
 use _09_implement_pkcs7_padding::pad;
+use _19_break_fixed_nonce_ctr_mode_usong_substitutions::fixed_xor;
 use openssl::symm::{decrypt, encrypt, Cipher};
 
 static mut KEY: [u8; 16] = [0u8; 16];
@@ -16,9 +17,13 @@ fn oracle(plaintext: &[u8]) -> Vec<u8> {
 }
 
 fn bitflip(ciphertext: &[u8]) -> Vec<u8> {
-    let mut ciphertext = ciphertext.to_vec();
-    ciphertext[43] ^= 1;
-    ciphertext
+    let c1 = ciphertext.get(0..16).unwrap();
+    let c2 = ciphertext.get(16..32).unwrap();
+    let c3 = ciphertext.get(32..).unwrap();
+
+    let c1 = &fixed_xor(c1, &fixed_xor(b"%20MCs;userdata=", b"___admin=true___"));
+
+    [c1, c2, c3].concat()
 }
 
 fn is_admin(ciphertext: &[u8]) -> bool {
@@ -42,8 +47,8 @@ mod tests {
         unsafe {
             KEY = rand::random();
         }
-        let plaintext = [[0u8; 16], *b"00000:admin<true"].concat();
-        let ciphertext = oracle(&plaintext);
+        let plaintext = b"absolutely arbitrary input that dont matter";
+        let ciphertext = oracle(plaintext);
         let ciphertext = bitflip(&ciphertext);
         assert!(is_admin(&ciphertext));
     }
