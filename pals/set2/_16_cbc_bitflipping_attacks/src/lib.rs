@@ -1,8 +1,14 @@
+#[macro_use]
+extern crate lazy_static;
+
 use _09_implement_pkcs7_padding::pad;
 use _19_break_fixed_nonce_ctr_mode_usong_substitutions::fixed_xor;
 use openssl::symm::{decrypt, encrypt, Cipher};
+use std::sync::RwLock;
 
-static mut KEY: [u8; 16] = [0u8; 16];
+lazy_static! {
+    static ref KEY: RwLock<[u8; 16]> = RwLock::new([0u8; 16]);
+}
 
 fn oracle(plaintext: &[u8]) -> Vec<u8> {
     let prefix = b"comment1=cooking%20MCs;userdata=";
@@ -13,7 +19,7 @@ fn oracle(plaintext: &[u8]) -> Vec<u8> {
 
     let cipher = Cipher::aes_128_cbc();
 
-    encrypt(cipher, &unsafe { KEY }, Some(&[0u8; 16]), &plaintext).unwrap()
+    encrypt(cipher, &*KEY.read().unwrap(), Some(&[0u8; 16]), &plaintext).unwrap()
 }
 
 fn bitflip(ciphertext: &[u8]) -> Vec<u8> {
@@ -29,7 +35,7 @@ fn bitflip(ciphertext: &[u8]) -> Vec<u8> {
 fn is_admin(ciphertext: &[u8]) -> bool {
     let cipher = Cipher::aes_128_cbc();
 
-    let plaintext = decrypt(cipher, &unsafe { KEY }, Some(&[0u8; 16]), &ciphertext).unwrap();
+    let plaintext = decrypt(cipher, &*KEY.read().unwrap(), Some(&[0u8; 16]), &ciphertext).unwrap();
     let plaintext = String::from_utf8_lossy(&plaintext);
 
     if plaintext.contains("admin=true") {
@@ -44,8 +50,9 @@ mod tests {
 
     #[test]
     fn capture_the_flag() {
-        unsafe {
-            KEY = rand::random();
+        {
+            let mut w = KEY.write().unwrap();
+            *w = rand::random();
         }
         let plaintext = b"absolutely arbitrary input that dont matter";
         let ciphertext = oracle(plaintext);

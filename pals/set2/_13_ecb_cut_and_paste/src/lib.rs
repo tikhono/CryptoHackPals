@@ -1,7 +1,14 @@
-static mut KEY: [u8; 16] = [0u8; 16];
+#[macro_use]
+extern crate lazy_static;
+
 use _09_implement_pkcs7_padding::pad;
 use openssl::symm::{decrypt, encrypt, Cipher};
 use std::collections::HashMap;
+use std::sync::RwLock;
+
+lazy_static! {
+    static ref KEY: RwLock<[u8; 16]> = RwLock::new([0u8; 16]);
+}
 
 fn parse(str: &str) -> HashMap<String, String> {
     let mut cookie = HashMap::new();
@@ -22,13 +29,19 @@ fn oracle(email: &str) -> Vec<u8> {
     let cipher = Cipher::aes_128_ecb();
 
     let profile = profile_for(email);
-    encrypt(cipher, &unsafe { KEY }, None, &pad(profile.as_ref(), 16)).unwrap()
+    encrypt(
+        cipher,
+        &*KEY.read().unwrap(),
+        None,
+        &pad(profile.as_ref(), 16),
+    )
+    .unwrap()
 }
 
 fn decrypt_cookie(profile: &[u8]) -> String {
     let cipher = Cipher::aes_128_ecb();
 
-    let bytes = decrypt(cipher, &unsafe { KEY }, None, profile).unwrap();
+    let bytes = decrypt(cipher, &*KEY.read().unwrap(), None, profile).unwrap();
     String::from_utf8_lossy(&bytes).to_string()
 }
 
@@ -83,8 +96,9 @@ mod tests {
 
     #[test]
     fn capture_the_flag() {
-        unsafe {
-            KEY = rand::random();
+        {
+            let mut w = KEY.write().unwrap();
+            *w = rand::random();
         }
 
         let admin_cookie = rewrite_cookie(&mut "fake@mail.com".to_string());

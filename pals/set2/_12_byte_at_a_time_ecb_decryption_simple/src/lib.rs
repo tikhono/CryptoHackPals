@@ -1,9 +1,15 @@
+#[macro_use]
+extern crate lazy_static;
+
 use ascii::IntoAsciiString;
 use openssl::symm::{encrypt, Cipher};
 use std::io;
 use std::io::Write;
+use std::sync::RwLock;
 
-static mut KEY: [u8; 16] = [0u8; 16];
+lazy_static! {
+    static ref KEY: RwLock<[u8; 16]> = RwLock::new([0u8; 16]);
+}
 
 pub fn get_cipher_text(plaintext: String) -> String {
     let cipher = Cipher::aes_128_ecb();
@@ -12,7 +18,7 @@ pub fn get_cipher_text(plaintext: String) -> String {
     plaintext.append(&mut "YELLOWSUBMARINE".as_bytes().to_vec());
 
     hex::encode(
-        encrypt(cipher, unsafe { &KEY }, None, &plaintext)
+        encrypt(cipher, &*KEY.read().unwrap(), None, &plaintext)
             .unwrap()
             .as_slice(),
     )
@@ -73,8 +79,9 @@ mod tests {
 
     #[test]
     fn capture_the_flag() {
-        unsafe {
-            KEY = rand::random();
+        {
+            let mut w = KEY.write().unwrap();
+            *w = rand::random();
         }
         assert_eq!(receive_blocks(2, 16), "YELLOWSUBMARINE");
     }
