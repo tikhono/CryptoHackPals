@@ -32,10 +32,13 @@ fn decrypt_cookie(profile: &[u8]) -> String {
     String::from_utf8_lossy(&bytes).to_string()
 }
 
-fn rewrite_cookie(email: &str) -> Result<Vec<u8>, &'static str> {
+fn rewrite_cookie(email: &mut String) -> Result<Vec<u8>, &'static str> {
     let block_size = 16;
-    if email.len() % block_size != 13 {
-        return Err("wrong mail length");
+
+    if email.len() > 13 {
+        return Err("Please, past shorter mail");
+    } else {
+        email.push_str(&"_".repeat(13 - email.len()));
     };
 
     let admin_block = pad(b"admin", block_size as u8);
@@ -84,7 +87,21 @@ mod tests {
             KEY = rand::random();
         }
 
-        let admin_cookie = rewrite_cookie("fake@mail.com");
+        let admin_cookie = rewrite_cookie(&mut "fake@mail.com".to_string());
+
+        match admin_cookie {
+            Ok(cookie) => println!("{}", decrypt_cookie(&cookie)),
+            Err(e) => println!("{}", e),
+        }
+
+        let admin_cookie = rewrite_cookie(&mut "very_long_mail.com".to_string());
+
+        match admin_cookie {
+            Ok(cookie) => println!("{}", decrypt_cookie(&cookie)),
+            Err(e) => println!("{}", e),
+        }
+
+        let admin_cookie = rewrite_cookie(&mut "short@mail".to_string());
 
         match admin_cookie {
             Ok(cookie) => println!("{}", decrypt_cookie(&cookie)),
