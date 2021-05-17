@@ -1,0 +1,20 @@
+[package]
+name = "_06_break_repeating_key_xor"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hex = "0.4"
+_05_implement_repeating_key_xor = {path = "../../../pals/set1/_05_implement_repeating_key_xor"}
+_03_single_byte_xor_cipher = {path = "../../../pals/set1/_03_single_byte_xor_cipher"}
+itertools = "0.10.0"
+base64 ="0.13.0"
+_02_fixed_xor = {path = "../_02_fixed_xor"}
+ascii = ""
+whatlang = ""
+
+[features]
+map_first_last = []

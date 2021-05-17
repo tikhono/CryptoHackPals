@@ -1,0 +1,17 @@
+[package]
+name = "encoding_challenge"
+version = "0.1.0"
+authors = ["tikhono <tihonovandrey11@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+telnet = ""
+serde_json = ""
+serde = { version = "1.0", features = ["derive"] }
+rot13 = "0.1.1"
+base64 ="0.13.0"
+hex = "0.4"
+ascii = "1.0.0"
+bytes_and_big_integers = { path = "../bytes_and_big_integers" }

@@ -1,0 +1,14 @@
+[package]
+name = "stream_of_consciousness"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hex = "0.4"
+ascii = ""
+itertools = ""
+ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}
+_19_break_fixed_nonce_ctr_mode_usong_substitutions = {path = "../../../../pals/set3/_19_break_fixed_nonce_ctr_mode_usong_substitutions"}

@@ -1,0 +1,13 @@
+[package]
+name = "_03_single_byte_xor_cipher"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+_02_fixed_xor = {path = "../_02_fixed_xor"}
+hex = "0.4"
+ascii = ""
+whatlang = ""
