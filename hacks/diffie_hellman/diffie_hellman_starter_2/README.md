@@ -14,3 +14,7 @@
 > Capture the flag:
 >
 >     cargo test --package diffie_hellman_starter_2 --lib tests::capture_the_flag -- --exact
+>
+> Test order:
+>
+>     cargo test --package diffie_hellman_starter_2 --lib tests::test_order -- --exact
