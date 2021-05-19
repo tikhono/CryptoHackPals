@@ -24,7 +24,7 @@
 >
 > Here's roughly how:
 >
-> 1.  Feed identical bytes of your-string to the function 1 at a time --- start with 1 byte ("A"), then "AA", then "AAA" and so on. Discover the block size of the cipher. You know it, but do this step anyway.
+> 1.  Feed identical bytes of your-string to the function 1 at a time --- start with 1 byte ("a"), then "AA", then "AAA" and so on. Discover the block size of the cipher. You know it, but do this step anyway.
 > 2.  Detect that the function is using ECB. You already know, but do this step anyways.
 > 3.  Knowing the block size, craft an input block that is exactly 1 byte short (for instance, if the block size is 8 bytes, make "AAAAAAA"). Think about what the oracle function is going to put in that last byte position.
 > 4.  Make a dictionary of every possible last byte by feeding different strings to the oracle; for instance, "AAAAAAAA", "AAAAAAAB", "AAAAAAAC", remembering the first block of each invocation.

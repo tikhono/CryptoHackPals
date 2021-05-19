@@ -6,7 +6,7 @@
 >
 > Write the function that does this for MT19937 using a 16-bit seed. Verify that you can encrypt and decrypt properly. This code should look similar to your CTR code.
 >
-> Use your function to encrypt a known plaintext (say, 14 consecutive 'A' characters) prefixed by a random number of random characters.
+> Use your function to encrypt a known plaintext (say, 14 consecutive 'a' characters) prefixed by a random number of random characters.
 >
 > From the CIPHERTEXT, recover the "KEY" (the 16 bit seed).
 >
