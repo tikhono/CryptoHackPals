@@ -1,16 +1,18 @@
-#![feature(step_trait)]
+use num::bigint::BigInt;
 
-use num::Integer;
-use std::fmt::Debug;
-
-pub fn order<T: num::PrimInt + Integer + std::ops::AddAssign + Copy>(g: T, p: T) -> T
-where
-    u32: From<T>,
-    T: std::iter::Step,
-{
-    for i in T::zero()..p {
-        if g.pow(i.into()) % p.clone() == g {
+pub fn order(g: BigInt, p: u32) -> u32 {
+    for i in 2..p {
+        if g.modpow(&BigInt::from(i), &BigInt::from(p)) == g {
             return i;
+        }
+    }
+    p
+}
+
+pub fn generator(p: u32) -> u32 {
+    for g in 2..p {
+        if order(BigInt::from(g), p) == p {
+            return g;
         }
     }
     p
@@ -18,10 +20,16 @@ where
 
 #[cfg(test)]
 mod tests {
-    use crate::order;
+    use crate::{generator, order};
+    use num::bigint::BigInt;
 
     #[test]
     fn capture_the_flag() {
-        assert_eq!(order::<u16>(209, 991), 1);
+        assert_eq!(generator(28151), 7);
+    }
+
+    #[test]
+    fn test_order() {
+        assert_eq!(order(BigInt::from(209), 991), 67);
     }
 }
