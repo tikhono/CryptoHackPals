@@ -29,7 +29,7 @@ mod tests {
     }
 
     #[test]
-    fn it_works() {
+    fn test_egcd() {
         let a = 26;
         let b = 3;
         let (g, x, y) = egcd(a, b);
