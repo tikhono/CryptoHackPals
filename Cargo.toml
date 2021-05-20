@@ -31,6 +31,8 @@ members = [
     "hacks/diffie_hellman/diffie_hellman_starter_3",
     "hacks/diffie_hellman/diffie_hellman_starter_4",
     "hacks/diffie_hellman/diffie_hellman_starter_5",
+    "hacks/diffie_hellman/parameter_injection",
+    "hacks/diffie_hellman/additive",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",
     "pals/set1/_04_detect_single_character_xor",

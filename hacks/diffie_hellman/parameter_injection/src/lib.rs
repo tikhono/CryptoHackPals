@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use num::bigint::BigInt;
-    use openssl::symm::{decrypt, Cipher};
+    use openssl::symm::{decrypt, encrypt, Cipher};
     use sha1::{Digest, Sha1};
 
     const BLOCK_SIZE: usize = 16;
