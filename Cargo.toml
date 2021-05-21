@@ -26,6 +26,8 @@ members = [
     "hacks/block_ciphers/block_cipher_modes/ctrime",
     "hacks/block_ciphers/block_cipher_modes/stream_of_consciousness",
     "hacks/block_ciphers/block_cipher_modes/flipping_cookie",
+    "hacks/rsa/rsa_starter_1",
+    "hacks/elliptic_curves/background_reading",
     "hacks/diffie_hellman/diffie_hellman_starter_1",
     "hacks/diffie_hellman/diffie_hellman_starter_2",
     "hacks/diffie_hellman/diffie_hellman_starter_3",

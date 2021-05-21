@@ -11,6 +11,7 @@ pub fn order(g: BigInt, p: u32) -> u32 {
 
 pub fn generator(p: u32) -> u32 {
     for g in 2..p {
+        //Generator couldn't be 0 or 1
         if order(BigInt::from(g), p) == p {
             return g;
         }
