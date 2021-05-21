@@ -31,10 +31,10 @@
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package diffie_hellman_starter_5 --lib tests
+>     cargo test --package parameter_injection --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package diffie_hellman_starter_5 --lib tests::capture_the_flag -- --exact
+>     cargo test --package parameter_injection --lib tests::capture_the_flag -- --exact
 > 
 > ![img.png](img.png)

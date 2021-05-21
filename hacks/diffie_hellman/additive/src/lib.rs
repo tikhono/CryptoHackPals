@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use num::bigint::BigInt;
-    use openssl::symm::{decrypt, encrypt, Cipher};
+    use openssl::symm::{decrypt, Cipher};
     use serde::Deserialize;
     use sha1::{Digest, Sha1};
     use telnet::{Telnet, TelnetEvent};
@@ -37,8 +37,8 @@ mod tests {
             TelnetEvent::Data(_) => {} //Need 2 reads, in this buffer just "Intercepted from Alice"
             _ => println!("Error"),
         }
-        let event = connection.read().expect("Read Error");
 
+        let event = connection.read().expect("Read Error");
         match event {
             TelnetEvent::Data(buffer) => {
                 let json_strings: Vec<&[u8]> = buffer.split(|n| *n == b'\n').collect();

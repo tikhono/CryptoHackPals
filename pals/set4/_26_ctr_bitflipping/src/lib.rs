@@ -17,8 +17,8 @@ fn oracle(plaintext: &[u8]) -> Vec<u8> {
     let prefix = b"comment1=cooking%20MCs;userdata=";
     let suffix = b";comment2=%20like%20a%20pound%20of%20bacon";
 
-    let plaintext = String::from_utf8_lossy(plaintext).replace("\"", "\\\"");
-    let plaintext = plaintext.replace(";", "\\;");
+    let plaintext = String::from_utf8_lossy(plaintext).replace("\"", " ");
+    let plaintext = plaintext.replace(";", " ");
 
     let plaintext = [prefix, plaintext.as_bytes(), suffix].concat();
     let plaintext = pad(&plaintext, BLOCK_SIZE as u8);
