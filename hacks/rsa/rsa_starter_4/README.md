@@ -21,8 +21,8 @@
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package diffie_hellman_starter_4 --lib tests
+>     cargo test --package rsa_starter_4 --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package diffie_hellman_starter_4 --lib tests::capture_the_flag -- --exact
+>     cargo test --package rsa_starter_4 --lib tests::capture_the_flag -- --exact

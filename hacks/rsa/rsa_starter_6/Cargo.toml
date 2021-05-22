@@ -1,0 +1,12 @@
+[package]
+name = "rsa_starter_6"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num = "0.4"
+sha2 = "0.9.5"
+hex = "0.4"
