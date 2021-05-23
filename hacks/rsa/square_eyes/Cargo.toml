@@ -1,5 +1,5 @@
 [package]
-name = "monoprime"
+name = "square_eyes"
 version = "0.1.0"
 authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
 edition = "2018"

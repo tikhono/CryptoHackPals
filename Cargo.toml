@@ -35,6 +35,8 @@ members = [
     "hacks/rsa/factoring",
     "hacks/rsa/inferius_prime",
     "hacks/rsa/monoprime",
+    "hacks/rsa/square_eyes",
+    "hacks/rsa/manyprime",
     "hacks/rsa/salty",
     "hacks/rsa/signing_server",
     "hacks/elliptic_curves/background_reading",
