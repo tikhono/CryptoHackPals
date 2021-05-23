@@ -12,16 +12,12 @@ pub fn prime_factor(mut n: BigUint) -> Option<BigUint> {
     let two = BigUint::one() + BigUint::one();
     let three = BigUint::one() + BigUint::one() + BigUint::one();
 
-    // STEP 1 | n divided by 2
     while n.is_even() {
         n /= &two;
     }
 
-    // STEP 2 | 3..sqrt(n) | Divide i by n. On failure, add 2 to i
     let n_sqrt = n.sqrt();
-
     let mut i = three;
-
     while i < n_sqrt {
         while n.divides(&i.clone()) {
             n /= i.clone();
@@ -29,7 +25,6 @@ pub fn prime_factor(mut n: BigUint) -> Option<BigUint> {
         i += two.clone();
     }
 
-    // Step 3
     if n > two {
         Some(n)
     } else {

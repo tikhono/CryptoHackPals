@@ -13,8 +13,8 @@
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package rsa_starter_3 --lib tests
+>     cargo test --package factoring --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package rsa_starter_3 --lib tests::capture_the_flag -- --exact
+>     cargo test --package factoring --lib tests::capture_the_flag -- --exact
