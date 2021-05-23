@@ -32,8 +32,8 @@ mod tests {
         encrypted_flag: String,
     }
 
-    #[test]
-    fn capture_the_flag() {
+    #[tokio::test]
+    async fn capture_the_flag() {
         let mut connection = Telnet::connect(("134.122.111.232", 13371), 8192)
             .expect("Couldn't connect to the server...");
 
