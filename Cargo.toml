@@ -33,6 +33,8 @@ members = [
     "hacks/rsa/rsa_starter_5",
     "hacks/rsa/rsa_starter_6",
     "hacks/rsa/factoring",
+    "hacks/rsa/inferius_prime",
+    "hacks/rsa/monoprime",
     "hacks/rsa/salty",
     "hacks/rsa/signing_server",
     "hacks/elliptic_curves/background_reading",
