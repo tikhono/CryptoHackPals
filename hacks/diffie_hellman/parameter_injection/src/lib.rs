@@ -7,7 +7,10 @@ mod tests {
     use num::bigint::BigInt;
     use serde::{Deserialize, Serialize};
     use sha1::{Digest, Sha1};
-    use telnet::{Telnet, TelnetEvent};
+    use tokio::io::AsyncBufReadExt;
+    use tokio::io::AsyncWriteExt;
+    use tokio::io::BufReader;
+    use tokio::net::TcpStream;
 
     // create an alias for convenience
     type Aes128Cbc = Cbc<Aes128, Pkcs7>;
@@ -34,28 +37,14 @@ mod tests {
 
     #[tokio::test]
     async fn capture_the_flag() {
-        let mut connection = Telnet::connect(("134.122.111.232", 13371), 8192)
-            .expect("Couldn't connect to the server...");
+        let stream = TcpStream::connect("134.122.111.232:13371").await.unwrap();
+        let mut stream = BufReader::new(stream);
 
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(_) => {}
-            _ => println!("Error"),
-        }
-        let mut alice_data = FromAlice {
-            p: "".to_string(),
-            g: "".to_string(),
-            A: "".to_string(),
-        };
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(buffer) => {
-                alice_data =
-                    serde_json::from_slice(&buffer.strip_suffix(b"\nSend to Bob: ").unwrap())
-                        .unwrap();
-            }
-            _ => println!("Error"),
-        }
+        let mut line = String::new();
+        stream.read_line(&mut line).await.unwrap();
+
+        let alice_data: FromAlice =
+            serde_json::from_str(line.strip_prefix("Intercepted from Alice: ").unwrap()).unwrap();
 
         let p = BigInt::parse_bytes(&alice_data.p.as_bytes()[2..], 16).unwrap();
         let alice_pub = BigInt::parse_bytes(&alice_data.A.as_bytes()[2..], 16).unwrap();
@@ -65,48 +54,22 @@ mod tests {
             "{{\"p\": \"{}\", \"g\": \"{}\", \"A\": \"{}\"}}",
             alice_data.p, alice_data.g, alice_data.g,
         );
-        connection
-            .write(data_for_bob.as_bytes())
-            .expect("Write Error");
+        stream.write_all(data_for_bob.as_bytes()).await.unwrap();
 
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(_) => {} //Need 2 reads, in this buffer just "Intercepted from Bob"
-            _ => println!("Error"),
-        }
-        let mut _bob_data = FromBob { B: "".to_string() };
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(buffer) => {
-                _bob_data =
-                    serde_json::from_slice(&buffer.strip_suffix(b"\nSend to Alice: ").unwrap())
-                        .unwrap();
-            }
-            _ => println!("Error"),
-        }
+        let mut line = String::new();
+        stream.read_line(&mut line).await.unwrap();
 
         let data_for_alice = format!("{{\"B\": \"{}\"}}", alice_data.g);
-        connection
-            .write(data_for_alice.as_bytes())
-            .expect("Write Error");
+        stream.write_all(data_for_alice.as_bytes()).await.unwrap();
 
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(_) => {} //Need 2 reads, in this buffer just "Intercepted from Bob"
-            _ => println!("Error"),
-        }
+        let mut line = String::new();
+        stream.read_line(&mut line).await.unwrap();
 
-        let mut flag = Flag {
-            iv: "".to_string(),
-            encrypted_flag: "".to_string(),
-        };
-        let event = connection.read().expect("Read Error");
-        match event {
-            TelnetEvent::Data(buffer) => {
-                flag = serde_json::from_slice(&buffer).unwrap();
-            }
-            _ => println!("Error"),
-        }
+        let flag: Flag = serde_json::from_str(
+            line.strip_prefix("Send to Alice: Intercepted from Alice: ")
+                .unwrap(),
+        )
+        .unwrap();
 
         let iv: Vec<u8> = hex::decode(flag.iv).unwrap();
         let flag = hex::decode(flag.encrypted_flag).unwrap();
