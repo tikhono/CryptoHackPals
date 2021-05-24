@@ -38,6 +38,7 @@ members = [
     "hacks/rsa/square_eyes",
     "hacks/rsa/manyprime",
     "hacks/rsa/salty",
+    "hacks/rsa/modulus_inutilis",
     "hacks/rsa/signing_server",
     "hacks/elliptic_curves/background_reading",
     "hacks/diffie_hellman/diffie_hellman_starter_1",

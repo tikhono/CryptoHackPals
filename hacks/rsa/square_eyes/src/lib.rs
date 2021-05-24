@@ -17,11 +17,9 @@ mod tests {
             10,
         )
         .unwrap();
-        let q = n.clone();
-        let phi = q.clone() - 1;
-
+        let q = n.sqrt();
+        let phi = q.clone() * (q - 1);
         let d = mod_inverse(e, phi).unwrap();
-
         let pt = ct.modpow(&d, &n);
         println!("{}", String::from_utf8_lossy(&pt.to_signed_bytes_be()));
     }
