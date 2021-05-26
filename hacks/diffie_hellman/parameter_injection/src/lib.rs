@@ -17,6 +17,7 @@ mod tests {
 
     const BLOCK_SIZE: usize = 16;
 
+    #[allow(non_snake_case)]
     #[derive(Serialize, Deserialize, Debug)]
     struct FromAlice {
         p: String,
@@ -24,6 +25,7 @@ mod tests {
         A: String,
     }
 
+    #[allow(non_snake_case)]
     #[derive(Serialize, Deserialize, Debug)]
     struct FromBob {
         B: String,

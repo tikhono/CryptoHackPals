@@ -4,7 +4,6 @@ use num_primes::{Factorization, Verification};
 use num_traits::One;
 
 pub fn prime_factor(mut n: BigUint) -> Option<BigUint> {
-    // Check Primality and if prime, returns prime
     if Verification::is_prime(&n) {
         return Some(n);
     }
@@ -42,5 +41,12 @@ mod tests {
         let n = BigUint::parse_bytes(b"510143758735509025530880200653196460532653147", 10).unwrap();
 
         println!("{}", prime_factor(n).unwrap());
+    }
+    #[test]
+    fn test_17_11() {
+        let p = BigUint::from(11u8);
+        let q = BigUint::from(17u8);
+
+        assert_eq!(p.clone(), prime_factor(p * q).unwrap());
     }
 }

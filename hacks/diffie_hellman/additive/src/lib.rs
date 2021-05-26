@@ -11,6 +11,7 @@ mod tests {
 
     const BLOCK_SIZE: usize = 16;
 
+    #[allow(non_snake_case)]
     #[derive(Deserialize, Debug)]
     struct FromAlice {
         p: String,
@@ -18,6 +19,7 @@ mod tests {
         A: String,
     }
 
+    #[allow(non_snake_case)]
     #[derive(Deserialize, Debug)]
     struct FromBob {
         B: String,
@@ -58,10 +60,8 @@ mod tests {
         let p = BigInt::parse_bytes(&alice_data.p.as_bytes()[2..], 16).unwrap();
         let g = BigInt::parse_bytes(&alice_data.g.as_bytes()[2..], 16).unwrap();
 
-        let mut alice_secret = BigInt::parse_bytes(b"0", 10).unwrap();
-
         let inv = mod_inverse(g, p.clone()).unwrap();
-        alice_secret = alice_pub * inv % &p;
+        let alice_secret = alice_pub * inv % &p;
 
         let shared_secret = bob_pub * &alice_secret % &p;
 

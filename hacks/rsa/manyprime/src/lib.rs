@@ -18,6 +18,10 @@ mod tests {
         )
         .unwrap();
 
+        // I used http://factordb.com to obtain factors
+        // It seems that this solution is correct for this task
+        // All solutions posted contains the same approach
+
         let vec: Vec<BigInt> = vec![
             BigInt::from_str_radix("9282105380008121879", 10).unwrap(),
             BigInt::from_str_radix("9303850685953812323", 10).unwrap(),
