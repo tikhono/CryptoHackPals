@@ -46,7 +46,7 @@ fn rational_to_contfrac(mut x: i32, mut y: i32) -> Vec<i32> {
     res
 }
 
-fn contfrac_to_rational_iter(contfrac: Iterable<i32>)  {
+fn contfrac_to_rational_iter(contfrac: I)
 
     let (n0, d0) = (0, 1);
     let (n1, d1) = (1, 0);
@@ -134,8 +134,8 @@ mod tests {
     fn rational() {
         assert_eq!(vec![0, 2, 1, 3], rational_to_contfrac(4, 11))
     }
-    
-    
+
+
     #[test]
     fn capture_the_flag() {
         // I used http://factordb.com, or it can be used Wienner attack
