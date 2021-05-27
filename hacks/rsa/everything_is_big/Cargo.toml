@@ -8,4 +8,3 @@ edition = "2018"
 
 [dependencies]
 num = "0.4"
-diffie_hellman_starter_1 = {path = "../../diffie_hellman/diffie_hellman_starter_1"}

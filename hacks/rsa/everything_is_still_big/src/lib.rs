@@ -1,152 +1,18 @@
-#![feature(destructuring_assignment)]
-
-use num::bigint::BigInt;
-use num::ToPrimitive;
-
-fn is_perfect_square(n: BigInt) -> bool {
-    let sq_mod256 = [
-        1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-        0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-        0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-        0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-        0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-        0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-        0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-        0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
-    ];
-    if sq_mod256[(n.clone() % BigInt::from(256)).to_usize().unwrap()] == 0 {
-        return false;
-    }
-    let t = vec![
-        vec![1, 1, 0, 0, 1, 0, 0, 1, 0],
-        vec![1, 1, 0, 0, 1],
-        vec![1, 1, 1, 0, 1, 0, 0],
-        vec![1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1],
-        vec![1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1],
-    ];
-
-    let a: BigInt = n.clone() % ((((9 * 5) * 7) * 13) * 17);
-
-    for t in t.iter() {
-        if t[a.clone().to_usize().unwrap() % t.len()] == 0 {
-            return false;
-        }
-    }
-    n.sqrt().pow(2) == n
-}
-
-fn rational_to_contfrac(mut x: i32, mut y: i32) -> Vec<i32> {
-    let mut res = Vec::new();
-    while y > 0 {
-        let a = x / y;
-        res.push(a);
-        (x, y) = (y, x - a * y);
-    }
-    res
-}
-
-fn contfrac_to_rational_iter(contfrac: I)
-
-    let (n0, d0) = (0, 1);
-    let (n1, d1) = (1, 0);
-    for q in contfrac {
-        let n = ((q*n1) + n0);
-        let d = ((q*d1) + d0);
-//yield is unimplemented;
-        let (n0, d0) = (n1, d1);
-        let (n1, d1) = (n, d);
-    }
-}
-/*
-fn convergents_from_contfrac(contfrac: Iterable<i32>)  {
-    "
-    ref: https://www.cits.ruhr-uni-bochum.de/imperia/md/content/may/krypto2ss08/shortsecretexponents.pdf Section.3
-    ";
-    let (n_, d_) = (1, 0);
-    for (i, (n, d)) in contfrac_to_rational_iter(contfrac).iter().enumerate() {
-        if (i % 2) == 0 {
-//yield is unimplemented;
-        } else {
-//yield is unimplemented;
-        }
-        let (n_, d_) = (n, d);
-    }
-}
-fn attack(e: i32, n: i32) -> Option<i32> {
-    "
-    ref: https://www.cits.ruhr-uni-bochum.de/imperia/md/content/may/krypto2ss08/shortsecretexponents.pdf Section.4
-
-    >>> attack(2621, 8927)
-    5
-    >>> attack(6792605526025, 9449868410449)
-    569
-    >>> attack(30749686305802061816334591167284030734478031427751495527922388099381921172620569310945418007467306454160014597828390709770861577479329793948103408489494025272834473555854835044153374978554414416305012267643957838998648651100705446875979573675767605387333733876537528353237076626094553367977134079292593746416875606876735717905892280664538346000950343671655257046364067221469807138232820446015769882472160551840052921930357988334306659120253114790638496480092361951536576427295789429197483597859657977832368912534761100269065509351345050758943674651053419982561094432258103614830448382949765459939698951824447818497599, 109966163992903243770643456296093759130737510333736483352345488643432614201030629970207047930115652268531222079508230987041869779760776072105738457123387124961036111210544028669181361694095594938869077306417325203381820822917059651429857093388618818437282624857927551285811542685269229705594166370426152128895901914709902037365652575730201897361139518816164746228733410283595236405985958414491372301878718635708605256444921222945267625853091126691358833453283744166617463257821375566155675868452032401961727814314481343467702299949407935602389342183536222842556906657001984320973035314726867840698884052182976760066141)
-    4221909016509078129201801236879446760697885220928506696150646938237440992746683409881141451831939190609743447676525325543963362353923989076199470515758399
-    ";
-    let f_ = rational_to_contfrac(e, n);
-    let iter = convergents_from_contfrac(f_)
-    for (k, dg) in  iter{
-        let edg = e*dg;
-        let phi = edg / k;
-        let x = (n - phi) + 1;
-        if (x % 2) == 0&&is_perfect_square((x / 2).pow(2) - n) {
-            let g = edg - (phi*k);
-            return dg / g;
-        }
-    }
-    return None;
-}
-
-
- */
-
 #[cfg(test)]
 mod tests {
-    use crate::{is_perfect_square, rational_to_contfrac};
     use diffie_hellman_starter_1::mod_inverse;
     use num::bigint::BigInt;
-    use num::{Num, One};
-
-    #[test]
-    fn perfect_square() {
-        assert_eq!(true, is_perfect_square(BigInt::from(100)));
-        assert_eq!(
-            true,
-            is_perfect_square(
-                BigInt::from_str_radix("2000000000000000000000000000", 10)
-                    .unwrap()
-                    .pow(2)
-            )
-        );
-        assert_eq!(
-            false,
-            is_perfect_square(
-                BigInt::from_str_radix("2000000000000000000000000000", 10)
-                    .unwrap()
-                    .pow(2)
-                    + BigInt::one()
-            )
-        );
-    }
-
-    #[test]
-    fn rational() {
-        assert_eq!(vec![0, 2, 1, 3], rational_to_contfrac(4, 11))
-    }
-
+    use num::Num;
 
     #[test]
     fn capture_the_flag() {
-        // I used http://factordb.com, or it can be used Wienner attack
-        // https://github.com/orisano/owiener
+        // I used http://factordb.com, or it can be used Boneh attack
 
         let n = BigInt::from_str_radix(
             "665166804cd78e8197073f65f58bca14e019982245fcc7cad74535e948a4e0258b2e919bf3720968a00e5240c5e1d6b8831d8fec300d969fccec6cce11dde826d3fbe0837194f2dc64194c78379440671563c6c75267f0286d779e6d91d3e9037c642a860a894d8c45b7ed564d341501cedf260d3019234f2964ccc6c56b6de8a4f66667e9672a03f6c29d95100cdf5cb363d66f2131823a953621680300ab3a2eb51c12999b6d4249dde499055584925399f3a8c7a4a5a21f095878e80bbc772f785d2cbf70a87c6b854eb566e1e1beb7d4ac6eb46023b3dc7fdf34529a40f5fc5797f9c15c54ed4cb018c072168e9c30ca3602e00ea4047d2e5686c6eb37b9",
             16,
         )
             .unwrap();
-        println!("{}", n);
 
         let q = BigInt::from_str_radix(
             "131205304707717699800023219057082007986286045823683571663112014612188606710079038751853416273709729039622908861933527111469616900188875912430487264576215232569029320804579614330240773622645122871884209068761138439268551367198798009790636662892148063583135747945604771740458352899202428704645256790931460695949",
