@@ -5,7 +5,7 @@ mod tests {
     use num::Num;
 
     #[test]
-    fn capture_the_flag() {
+    fn capture_the_flag_db() {
         // I used http://factordb.com, or it can be used Boneh attack
 
         let n = BigInt::from_str_radix(
@@ -37,7 +37,7 @@ mod tests {
     }
 
     #[test]
-    fn capture_the_flg() {
+    fn capture_the_flag_reduction() {
         use lll_rs::{
             l2::{bigl2, l2f},
             lll::{biglll, lllf},
