@@ -33,23 +33,46 @@ mod tests {
 
     #[tokio::test]
     async fn capture_the_flag() {
-        let stream = TcpStream::connect("134.122.111.232:13380").await.unwrap();
+        let stream = TcpStream::connect("134.122.111.232:13380")
+            .await
+            .expect("Failed to connect");
         let mut stream = BufReader::new(stream);
 
         let mut line = String::new();
-        stream.read_line(&mut line).await.unwrap();
-        let alice_data: FromAlice =
-            serde_json::from_str(&line.strip_prefix("Intercepted from Alice: ").unwrap()).unwrap();
+        stream
+            .read_line(&mut line)
+            .await
+            .expect("Failed to read from server stream");
+        let alice_data: FromAlice = serde_json::from_str(
+            &line
+                .strip_prefix("Intercepted from Alice: ")
+                .expect("Failed to strip prefix, check connection and server output"),
+        )
+        .expect("Failed to read json, check server output");
 
         let mut line = String::new();
-        stream.read_line(&mut line).await.unwrap();
-        let bob_data: FromBob =
-            serde_json::from_str(&line.strip_prefix("Intercepted from Bob: ").unwrap()).unwrap();
+        stream
+            .read_line(&mut line)
+            .await
+            .expect("Failed to read from server stream");
+        let bob_data: FromBob = serde_json::from_str(
+            &line
+                .strip_prefix("Intercepted from Bob: ")
+                .expect("Failed to strip prefix, check connection and server output"),
+        )
+        .expect("Failed to read json, check server output");
 
         let mut line = String::new();
-        stream.read_line(&mut line).await.unwrap();
-        let flag: Flag =
-            serde_json::from_str(&line.strip_prefix("Intercepted from Alice: ").unwrap()).unwrap();
+        stream
+            .read_line(&mut line)
+            .await
+            .expect("Failed to read from server stream");
+        let flag: Flag = serde_json::from_str(
+            &line
+                .strip_prefix("Intercepted from Alice: ")
+                .expect("Failed to strip prefix, check connection and server output"),
+        )
+        .expect("Failed to read json, check server output");
 
         let iv = hex::decode(flag.iv).unwrap();
         let flag = hex::decode(flag.encrypted).unwrap();
