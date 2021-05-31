@@ -1,6 +1,9 @@
 use num::bigint::BigInt;
 use num::ToPrimitive;
 
+//The best explanation of perfect_square algorithm
+// https://stackoverflow.com/a/424936
+// https://stackoverflow.com/a/22008277
 pub fn is_perfect_square(n: BigInt) -> bool {
     let sq_mod256 = [
         1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
