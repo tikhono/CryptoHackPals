@@ -1,16 +1,16 @@
 [CryptoHack – RSA challenges](https://cryptohack.org/challenges/rsa/)
 
-> Here is my super-strong RSA implementation, because it's 1600 bits strong it should be unbreakable... at least I think so!
+> Finding large primes is slow, so I've devised an optimisation.
 >
-> [inferius.py](https://cryptohack.org/static/challenges/inferius_e85eea9b19cd68aa71ce850918302bad.py)
+> [descent.py](https://cryptohack.org/static/challenges/descent_240fda375202c97a3cbaf3fdedbb8266.py)
 >
-> [output.txt](https://cryptohack.org/static/challenges/output_4b843d94b6196df152219c3165b9347f.txt)
+> [output.txt](https://cryptohack.org/static/challenges/output_14f82a67efe7b7edffb810dbb7ab5f27.txt)
 
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package inferius_prime --lib tests
+>     cargo test --package infinite_descent --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package inferius_prime --lib tests::capture_the_flag -- --exact
+>     cargo test --package infinite_descent --lib tests::capture_the_flag -- --exact
