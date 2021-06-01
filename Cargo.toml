@@ -53,6 +53,7 @@ members = [
     "hacks/diffie_hellman/additive",
     "hacks/elliptic_curves/background_reading",
     "hacks/elliptic_curves/point_negation",
+    "hacks/elliptic_curves/point_addition",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",
     "pals/set1/_04_detect_single_character_xor",
