@@ -18,7 +18,7 @@ pub fn addition(p: &Point, q: &Point) -> Point {
             let lambda = if x1 == x2 && y1 == y2 {
                 (3 * x1.pow(2) + 497) * modinverse(2 * y1, 9739).unwrap() % 9739
             } else {
-                (y2 - y1) * modinverse(x2 - x1, 9739).unwrap() % 9739
+                (y2 - y1) * modinverse(((x2 - x1) % 9739 + 9739) % 9739, 9739).unwrap() % 9739
             };
             let x = ((lambda.pow(2) - x1 - x2) % 9739 + 9739) % 9739;
             let y = ((lambda * (x1 - x) - y1) % 9739 + 9739) % 9739;
