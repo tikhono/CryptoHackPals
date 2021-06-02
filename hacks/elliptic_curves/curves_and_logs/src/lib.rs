@@ -1,6 +1,6 @@
 use point_addition::Point;
 
-trait Getter {
+pub trait Getter {
     fn x(&self) -> Option<i64>;
     fn y(&self) -> Option<i64>;
 }

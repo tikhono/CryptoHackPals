@@ -44,4 +44,3 @@
 > Capture the flag:
 >
 >     cargo test --package curves_and_logs --lib tests::capture_the_flag -- --exact
->

@@ -56,6 +56,7 @@ members = [
     "hacks/elliptic_curves/point_addition",
     "hacks/elliptic_curves/scalar_multiplication",
     "hacks/elliptic_curves/curves_and_logs",
+    "hacks/elliptic_curves/efficient_exchange",
     "pals/set1/_02_fixed_xor",
     "pals/set1/_03_single_byte_xor_cipher",
     "pals/set1/_04_detect_single_character_xor",
