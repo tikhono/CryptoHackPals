@@ -1,4 +1,3 @@
-use modinverse::modinverse;
 use point_addition::{addition, Point};
 
 pub fn multiplication(p: &Point, mut n: u64) -> Point {

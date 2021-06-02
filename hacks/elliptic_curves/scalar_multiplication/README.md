@@ -32,12 +32,12 @@
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package point_addition --lib tests
+>     cargo test --package scalar_multiplication --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package point_addition --lib tests::capture_the_flag -- --exact
+>     cargo test --package scalar_multiplication --lib tests::capture_the_flag -- --exact
 >
-> Test addition:
+> Test multiplication:
 >
->     cargo test --package point_addition --lib tests::test_addition -- --exact
+>     cargo test --package scalar_multiplication --lib tests::test_addition -- --exact
