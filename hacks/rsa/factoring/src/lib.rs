@@ -1,6 +1,6 @@
 use num_bigint::BigUint;
 use num_integer::Integer;
-use num_primes::{Factorization, Verification};
+use num_primes::Verification;
 use num_traits::One;
 
 //This naive solution runs infinitely long, so I used http://factordb.com
@@ -47,6 +47,15 @@ mod tests {
 
         println!("{}", prime_factor(n).unwrap());
     }
+
+    #[test]
+    fn capture_the_flag_db() {
+        let p = BigUint::parse_bytes(b"19704762736204164635843", 10).unwrap();
+        let q = BigUint::parse_bytes(b"25889363174021185185929", 10).unwrap();
+
+        println!("Factordb have answer: {}", BigUint::min(p, q));
+    }
+
     #[test]
     fn test_17_11() {
         let p = BigUint::from(11u8);

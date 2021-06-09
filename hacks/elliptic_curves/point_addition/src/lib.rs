@@ -22,7 +22,7 @@ pub fn addition(p: &Point, q: &Point) -> Point {
             };
             let x = ((lambda.pow(2) - x1 - x2) % 9739 + 9739) % 9739;
             let y = ((lambda * (x1 - x) - y1) % 9739 + 9739) % 9739;
-            return Point::Coord { x, y };
+            Point::Coord { x, y }
         }
     }
 }

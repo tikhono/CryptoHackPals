@@ -17,4 +17,4 @@
 >
 > Capture the flag:
 >
->     cargo test --package factoring --lib tests::capture_the_flag -- --exact
+>     cargo test --package factoring --lib tests::capture_the_flag_db -- --exact
