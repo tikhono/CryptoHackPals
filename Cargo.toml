@@ -77,6 +77,7 @@ members = [
     "pals/set3/_24_create_the_mt_19937_stream_cipher_ans_break_it",
     "pals/set4/_26_ctr_bitflipping",
     "pals/set4/_27_recover_the_key_from_cbc_with_iv_is_key",
+    "pals/set4/_28_implement_a_sha_1_keyed_mac",
     "pals/set5/_33_implement_diffie_hellman",
     "pals/set5/_34_parameter_injection",
     "pals/set6/_41_implement_unpadded_message_recovery_oracle",
