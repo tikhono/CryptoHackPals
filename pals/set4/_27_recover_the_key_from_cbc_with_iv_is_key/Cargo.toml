@@ -1,0 +1,15 @@
+[package]
+name = "_27_recover_the_key_from_cbc_with_iv_is_key"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+_19_break_fixed_nonce_ctr_mode_usong_substitutions = {path = "../../set3/_19_break_fixed_nonce_ctr_mode_usong_substitutions"}
+hex = "0.4"
+rand = "0.8.3"
+openssl = "0.10.34"
+ascii = "1.0.0"
+lazy_static = "1.4.0"
