@@ -76,5 +76,9 @@ members = [
     "pals/set3/_23_clone_an_mt19937_rng_from_its_output",
     "pals/set3/_24_create_the_mt_19937_stream_cipher_ans_break_it",
     "pals/set4/_26_ctr_bitflipping",
-    "pals/set5/_33_implement_diffie-hellman",
+    "pals/set5/_33_implement_diffie_hellman",
+    "pals/set5/_34_parameter_injection",
+    "pals/set6/_41_implement_unpadded_message_recovery_oracle",
+    "pals/set6/_42_bleichenbachers_e3_rsa_attack",
+    "pals/set6/_43_dsa_key_recovery_from_nonce",
 ]

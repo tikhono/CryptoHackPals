@@ -1,5 +1,5 @@
 [package]
-name = "_33_implement_diffie_hellman"
+name = "_42_bleichenbachers_e3_rsa_attack"
 version = "0.1.0"
 authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
 edition = "2018"

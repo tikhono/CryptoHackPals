@@ -1,5 +1,5 @@
 [package]
-name = "_33_implement_diffie_hellman"
+name = "_43_dsa_key_recovery_from_nonce"
 version = "0.1.0"
 authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
 edition = "2018"
@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 num = "0.4"
+diffie_hellman_starter_1 = {path = "../../../hacks/diffie_hellman/diffie_hellman_starter_1"}
+rayon = "1.5.1"

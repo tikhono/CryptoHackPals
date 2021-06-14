@@ -1,20 +1,50 @@
-[CryptoHack – RSA challenges](https://cryptohack.org/challenges/rsa/)
+[Challenge 41 Set 6 - The Cryptopals Crypto Challenges](https://cryptopals.com/sets/6/challenges/41)
 
-> I've encrypted a secret number for your eyes only using your public key parameters:
+> ### Implement unpadded message recovery oracle
 >
-> `N = 882564595536224140639625987659416029426239230804614613279163`
+> Nate Lawson says we should stop calling it "RSA padding" and start calling it "RSA armoring". Here's why.
 >
-> `e = 65537`
+> Imagine a web application, again with the Javascript encryption, taking RSA-encrypted messages which (again: Javascript) aren't padded before encryption at all.
 >
-> Use the private key that you found for these parameters in the previous challenge to decrypt this ciphertext:
+> You can submit an arbitrary RSA blob and the server will return plaintext. But you can't submit the same message twice: let's say the server keeps hashes of previous messages for some liveness interval, and that the message has an embedded timestamp:
 >
-> `c = 77578995801157823671636298847186723593814843845525223303932`
+> {
+>   time: 1356304276,
+>   social: '555-55-5555',
+> }
+>
+> You'd like to capture other people's messages and use the server to decrypt them. But when you try, the server takes the hash of the ciphertext and uses it to reject the request. Any bit you flip in the ciphertext irrevocably scrambles the decryption.
+>
+> This turns out to be trivially breakable:
+>
+> -   Capture the ciphertext C
+> -   Let N and E be the public modulus and exponent respectively
+> -   Let S be a random number > 1 mod N. Doesn't matter what.
+> -   Now:
+      >
+      >     C' = ((S\*\*E mod N) C) mod N
+>
+> -   Submit C', which appears totally different from C, to the server, recovering P', which appears totally different from P
+> -   Now:
+      >
+      >               P'
+      >         P = -----  mod N
+      >               S
+>
+>
+> Oops!
+>
+> Implement that attack.
+>
+> ### Careful about division in cyclic groups.
+>
+> Remember: you don't simply divide mod N; you multiply by the multiplicative inverse mod N. So you'll need a modinv() function.
 
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package rsa_starter_5 --lib tests
+>     cargo test --package _41_implement_unpadded_message_recovery_oracle --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package rsa_starter_5 --lib tests::capture_the_flag -- --exact
+>     cargo test --package _41_implement_unpadded_message_recovery_oracle --lib tests::capture_the_flag -- --exact
