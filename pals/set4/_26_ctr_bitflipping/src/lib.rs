@@ -11,6 +11,7 @@ const BLOCK_SIZE: usize = 16;
 lazy_static! {
     static ref KEY: RwLock<[u8; BLOCK_SIZE]> = RwLock::new([0u8; BLOCK_SIZE]);
     static ref IV: RwLock<[u8; BLOCK_SIZE]> = RwLock::new([0u8; BLOCK_SIZE]);
+    static ref CIPHER: Cipher = Cipher::aes_128_ctr();
 }
 
 fn oracle(plaintext: &[u8]) -> Vec<u8> {
@@ -23,10 +24,8 @@ fn oracle(plaintext: &[u8]) -> Vec<u8> {
     let plaintext = [prefix, plaintext.as_bytes(), suffix].concat();
     let plaintext = pad(&plaintext, BLOCK_SIZE as u8);
 
-    let cipher = Cipher::aes_128_ctr();
-
     encrypt(
-        cipher,
+        *CIPHER,
         &*KEY.read().unwrap(),
         Some(&*IV.read().unwrap()),
         &plaintext,
@@ -44,10 +43,8 @@ fn bitflip(ciphertext: &[u8]) -> Vec<u8> {
 }
 
 fn is_admin(ciphertext: &[u8]) -> bool {
-    let cipher = Cipher::aes_128_ctr();
-
     let plaintext = decrypt(
-        cipher,
+        *CIPHER,
         &*KEY.read().unwrap(),
         Some(&*IV.read().unwrap()),
         &ciphertext,

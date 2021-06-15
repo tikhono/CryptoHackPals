@@ -75,6 +75,7 @@ members = [
     "pals/set3/_22_crack_an_mt19937_seed",
     "pals/set3/_23_clone_an_mt19937_rng_from_its_output",
     "pals/set3/_24_create_the_mt_19937_stream_cipher_ans_break_it",
+    "pals/set4/_25_break_random_access_read_write_aes_ctr",
     "pals/set4/_26_ctr_bitflipping",
     "pals/set4/_27_recover_the_key_from_cbc_with_iv_is_key",
     "pals/set4/_28_implement_a_sha_1_keyed_mac",
