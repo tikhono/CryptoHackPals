@@ -61,6 +61,6 @@ mod tests {
         let p = BigUint::from(11u8);
         let q = BigUint::from(17u8);
 
-        assert_eq!(p.clone(), prime_factor(p * q).unwrap());
+        assert_eq!(q.clone(), prime_factor(p * q).unwrap());
     }
 }
