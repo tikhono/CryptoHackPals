@@ -1,14 +1,28 @@
-[CryptoHack – RSA challenges](https://cryptohack.org/challenges/rsa/)
+[Challenge 39 Set 5 - The Cryptopals Crypto Challenges](https://cryptopals.com/sets/5/challenges/39)
 
-> I've encrypted a secret number for your eyes only using your public key parameters:
+> ### Implement RSA
 >
-> `N = 882564595536224140639625987659416029426239230804614613279163`
+> There are two annoying things about implementing RSA. Both of them involve key generation; the actual encryption/decryption in RSA is trivial.
 >
-> `e = 65537`
+> First, you need to generate random primes. You can't just agree on a prime ahead of time, like you do in DH. You can write this algorithm yourself, but I just cheat and use OpenSSL's BN library to do the work.
 >
-> Use the private key that you found for these parameters in the previous challenge to decrypt this ciphertext:
+> The second is that you need an "invmod" operation (the multiplicative inverse), which is not an operation that is wired into your language. The algorithm is just a couple lines, but I always lose an hour getting it to work.
 >
-> `c = 77578995801157823671636298847186723593814843845525223303932`
+> I recommend you not bother with primegen, but do take the time to get your own EGCD and invmod algorithm working.
+>
+> Now:
+>
+> -   Generate 2 random primes. We'll use small numbers to start, so you can just pick them out of a prime table. Call them "p" and "q".
+> -   Let n be p \* q. Your RSA math is modulo n.
+> -   Let et be (p-1)\*(q-1) (the "totient"). You need this value only for keygen.
+> -   Let e be 3.
+> -   Compute d = invmod(e, et). invmod(17, 3120) is 2753.
+> -   Your public key is \[e, n\]. Your private key is \[d, n\].
+> -   To encrypt: c = m\*\*e%n. To decrypt: m = c\*\*d%n
+> -   Test this out with a number, like "42".
+> -   Repeat with bignum primes (keep e=3).
+>
+> Finally, to encrypt a string, do something cheesy, like convert the string to hex and put "0x" on the front of it to turn it into a number. The math cares not how stupidly you feed it strings.
 
 > ### How to:
 > Run all tests from this package:
