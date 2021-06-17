@@ -1,0 +1,10 @@
+[package]
+name = "_29_break_a_sha_1_keyed_mac_using_length_extension"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sha-1 = "0.9.6"
