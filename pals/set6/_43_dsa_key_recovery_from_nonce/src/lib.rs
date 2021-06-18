@@ -1,10 +1,11 @@
 #[cfg(test)]
 mod tests {
     use diffie_hellman_starter_1::mod_inverse;
-    use num::bigint::BigInt;
-    use num::Num;
+    use num::bigint::{BigInt, Sign};
+    use num::{Num, Signed};
     use rayon::iter::ParallelIterator;
     use rayon::prelude::IntoParallelIterator;
+    use sha1::{Digest, Sha1};
 
     #[test]
     fn capture_the_flag() {
@@ -31,15 +32,14 @@ mod tests {
         let s =
             BigInt::from_str_radix("857042759984254168557880549501802188789837994940", 10).unwrap();
 
-        let hash = BigInt::from_str_radix("0954edd5e0afe5542a4adf012611a91912a3ec16", 16).unwrap();
+        let hash =BigInt::from_bytes_be(Sign::Plus,&Sha1::new().chain("For those that envy a MC it can be hazardous to your health\nSo be friendly, a matter of life and death, just like a etch-a-sketch\n").finalize()[..]);
 
-        let range = 1..0xFFFF;
+        let range = 1..=0xFFFF;
         let k = range.into_par_iter().find_any(|&k| {
-            let private = ((s.clone() * BigInt::from(k) - hash.clone())
-                * mod_inverse(r.clone(), q.clone()).unwrap())
-                % q.clone();
+            let mut private = ((&s * BigInt::from(k)) - &hash).abs();
+            private = (private * mod_inverse(r.clone(), q.clone()).unwrap()) % &q;
             pubkey == g.modpow(&private, &p)
         });
-        println!("_____{:?}_____", k);
+        println!("{:?}", k);
     }
 }

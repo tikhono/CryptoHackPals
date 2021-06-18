@@ -7,9 +7,13 @@ mod tests {
     fn capture_the_flag() {
         let e = BigInt::from(3);
 
-        let n1 = BigInt::from(12289);
-        let n2 = BigInt::from(112909);
-        let n3 = BigInt::from(401);
+        let p = BigInt::from(263);
+        let q = BigInt::from(991);
+        let r = BigInt::from(191);
+
+        let n1 = &p * &q;
+        let n2 = &p * &r;
+        let n3 = &q * &r;
 
         let plaintext = BigInt::from(12345);
 

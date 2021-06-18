@@ -10,3 +10,4 @@ edition = "2018"
 num = "0.4"
 diffie_hellman_starter_1 = {path = "../../../hacks/diffie_hellman/diffie_hellman_starter_1"}
 rayon = "1.5.1"
+sha-1 = "0.9.6"
