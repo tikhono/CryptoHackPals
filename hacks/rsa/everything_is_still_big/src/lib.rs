@@ -37,9 +37,10 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn capture_the_flag_reduction() {
         use lll_rs::l2::bigl2;
-        use lll_rs::{lll::biglll, matrix::Matrix, vector::BigVector};
+        use lll_rs::{matrix::Matrix, vector::BigVector};
 
         use rug::Integer;
 
