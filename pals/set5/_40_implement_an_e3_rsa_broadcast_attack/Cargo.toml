@@ -9,3 +9,6 @@ edition = "2018"
 [dependencies]
 num = "0.4"
 diffie_hellman_starter_1 = {path = "../../../hacks/diffie_hellman/diffie_hellman_starter_1"}
+rsa = "0.4.0"
+rand = "0.8.4"
+num-bigint-dig = "0.7.0"

@@ -1,19 +1,30 @@
 #[cfg(test)]
 mod tests {
     use diffie_hellman_starter_1::mod_inverse;
-    use num::bigint::BigInt;
+    use num::bigint::{BigInt, Sign};
+    use rsa::{BigUint, PublicKeyParts};
 
     #[test]
     fn capture_the_flag() {
+        use rand::rngs::OsRng;
+        use rsa::{RSAPrivateKey, RSAPublicKey};
+        let mut rng = OsRng;
+        let bits = 512;
+        let private_key_1 = RSAPrivateKey::new_with_exp(&mut rng, bits, &BigUint::from(3u8))
+            .expect("failed to generate a key");
+        let public_key_1 = RSAPublicKey::from(&private_key_1);
+        let private_key_2 = RSAPrivateKey::new_with_exp(&mut rng, bits, &BigUint::from(3u8))
+            .expect("failed to generate a key");
+        let public_key_2 = RSAPublicKey::from(&private_key_2);
+        let private_key_3 = RSAPrivateKey::new_with_exp(&mut rng, bits, &BigUint::from(3u8))
+            .expect("failed to generate a key");
+        let public_key_3 = RSAPublicKey::from(&private_key_3);
+
         let e = BigInt::from(3);
 
-        let p = BigInt::from(263);
-        let q = BigInt::from(991);
-        let r = BigInt::from(191);
-
-        let n1 = &p * &q;
-        let n2 = &p * &r;
-        let n3 = &q * &r;
+        let n1 = BigInt::from_bytes_be(Sign::Plus, &public_key_1.n().to_bytes_be());
+        let n2 = BigInt::from_bytes_be(Sign::Plus, &public_key_2.n().to_bytes_be());
+        let n3 = BigInt::from_bytes_be(Sign::Plus, &public_key_3.n().to_bytes_be());
 
         let plaintext = BigInt::from(12345);
 
