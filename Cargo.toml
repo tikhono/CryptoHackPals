@@ -88,4 +88,5 @@ members = [
     "pals/set6/_41_implement_unpadded_message_recovery_oracle",
     "pals/set6/_42_bleichenbachers_e3_rsa_attack",
     "pals/set6/_43_dsa_key_recovery_from_nonce",
+    "pals/set6/_44_dsa_nonce_recovery_from_repeated_nonce",
 ]
