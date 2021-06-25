@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 _09_implement_pkcs7_padding = {path = "../_09_implement_pkcs7_padding"}
 rand = "0.8.3"
-openssl = ""
+openssl = "0.10.35"

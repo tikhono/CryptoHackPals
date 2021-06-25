@@ -1,5 +1,5 @@
 [package]
-name = "_03_single_byte_xor_cipher"
+name = "_44_dsa_nonce_recovery_from_repeated_nonce"
 version = "0.1.0"
 authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
 edition = "2018"
@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-_02_fixed_xor = {path = "../_02_fixed_xor"}
+num = "0.4"
+diffie_hellman_starter_1 = {path = "../../../hacks/diffie_hellman/diffie_hellman_starter_1"}
+sha-1 = "0.9.6"
 hex = "0.4"
-ascii = "1.0.0"
-whatlang = "0.12.0"

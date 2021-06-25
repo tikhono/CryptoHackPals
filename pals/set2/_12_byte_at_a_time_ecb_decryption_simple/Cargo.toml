@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 hex = "0.4"
-ascii = ""
+ascii = "1.0.0"
 rand = "0.8.3"
-openssl = ""
-lazy_static = ""
+openssl = "0.10.35"
+lazy_static = "1.4.0"

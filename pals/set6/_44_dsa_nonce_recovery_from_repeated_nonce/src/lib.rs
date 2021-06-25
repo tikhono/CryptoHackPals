@@ -1,34 +1,43 @@
 #[cfg(test)]
 mod tests {
-    use diffie_hellman_starter_1::mod_inverse;
-    use num::bigint::BigInt;
-    use num::Num;
-    use sha1::{Digest, Sha1};
+    use openssl::bn::BigNum;
+    use openssl::dsa::Dsa;
+    use openssl::hash::MessageDigest;
+    use openssl::pkey::PKey;
+    use openssl::sign::{Signer, Verifier};
 
     #[test]
     fn capture_the_flag() {
-        let q = BigInt::from_str_radix("f4f47f05794b256174bba6e9b396a7707e563c5b", 16).unwrap();
-
-        let r = BigInt::from_str_radix("1105520928110492191417703162650245113664610474875", 10)
+        let g = BigNum::from_u32(0).unwrap();
+        let priv_key = BigNum::from_u32(3).unwrap();
+        let p = BigNum::from_u32(17).unwrap();
+        let q = BigNum::from_u32(19).unwrap();
+        let mut pub_key = BigNum::new().unwrap();
+        pub_key
+            .mod_exp(
+                &g,
+                &priv_key,
+                &p,
+                &mut *openssl::bn::BigNumContext::new().unwrap(),
+            )
             .unwrap();
-        let s1 = BigInt::from_str_radix("1267396447369736888040262262183731677867615804316", 10)
-            .unwrap();
-        let m1 = BigInt::from_str_radix("a4db3de27e2db3e5ef085ced2bced91b82e0df19", 16).unwrap();
+        let dsa = Dsa::from_private_components(p, q, g, priv_key, pub_key).unwrap();
 
-        let s2 = BigInt::from_str_radix("1021643638653719618255840562522049391608552714967", 10)
-            .unwrap();
-        let m2 = BigInt::from_str_radix("d22804c4899b522b23eda34d2137cd8cc22b9ce8", 16).unwrap();
+        let pkey = PKey::from_dsa(dsa).unwrap();
 
-        let k = (((&m2 - &m1) % &q) * mod_inverse((&s2 - &s1) % &q, q.clone()).unwrap()) % &q;
+        let data = b"hello, world!";
+        let data2 = b"hola, mundo!";
 
-        let res = ((((&s1 * &k) - &m1) % &q) * mod_inverse(r, q.clone()).unwrap()) % &q;
+        // Sign the data
+        let mut signer = Signer::new(MessageDigest::sha256(), &pkey).unwrap();
+        signer.update(data).unwrap();
+        signer.update(data2).unwrap();
+        let signature = signer.sign_to_vec().unwrap();
 
-        assert_eq!(
-            hex::decode("ca8f6f7c66fa362d40760d135b763eb8527d3d52").unwrap(),
-            Sha1::new()
-                .chain(res.to_str_radix(16))
-                .finalize()
-                .as_slice(),
-        );
+        // Verify the data
+        let mut verifier = Verifier::new(MessageDigest::sha256(), &pkey).unwrap();
+        verifier.update(data).unwrap();
+        verifier.update(data2).unwrap();
+        assert!(verifier.verify(&signature).unwrap());
     }
 }

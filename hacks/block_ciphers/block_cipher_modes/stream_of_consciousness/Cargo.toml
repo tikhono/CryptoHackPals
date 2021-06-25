@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 hex = "0.4"
-ascii = ""
-itertools = ""
+ascii = "1.0.0"
+itertools = "0.10.1"
 ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}
 _19_break_fixed_nonce_ctr_mode_usong_substitutions = {path = "../../../../pals/set3/_19_break_fixed_nonce_ctr_mode_usong_substitutions"}

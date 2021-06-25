@@ -1,47 +1,26 @@
-[Challenge 44 Set 6 - The Cryptopals Crypto Challenges](https://cryptopals.com/sets/6/challenges/44)
+[Challenge 45 Set 6 - The Cryptopals Crypto Challenges](https://cryptopals.com/sets/6/challenges/45)
 
-> ### DSA nonce recovery from repeated nonce
+> Take your DSA code from the previous exercise. Imagine it as part of an algorithm in which the client was allowed to propose domain parameters (the p and q moduli, and the g generator).
 >
-> ### Cryptanalytic MVP award.
+> This would be bad, because attackers could trick victims into accepting bad parameters. Vaudenay gave two examples of bad generator parameters: generators that were 0 mod p, and generators that were 1 mod p.
 >
-> This attack (in an elliptic curve group) broke the PS3. It is a great, great attack.
+> Use the parameters from the previous exercise, but substitute 0 for "g". Generate a signature. You will notice something bad. Verify the signature. Now verify any other signature, for any other string.
 >
-> [In this file find a collection of DSA-signed messages.](https://cryptopals.com/static/challenge-data/44.txt) (NB: each msg has a trailing space.)
+> Now, try (p+1) as "g". With this "g", you can generate a magic signature s, r for any DSA public key that will validate against any string. For arbitrary z:
 >
-> These were signed under the following pubkey:
+>   r = ((y\*\*z) % p) % q
 >
-> y = 2d026f4bf30195ede3a088da85e398ef869611d0f68f07
->     13d51c9c1a3a26c95105d915e2d8cdf26d056b86b8a7b8
->     5519b1c23cc3ecdc6062650462e3063bd179c2a6581519
->     f674a61f1d89a1fff27171ebc1b93d4dc57bceb7ae2430
->     f98a6a4d83d8279ee65d71c1203d2c96d65ebbf7cce9d3
->     2971c3de5084cce04a2e147821
+>         r
+>   s =  --- % q
+>         z
 >
-> (using the same domain parameters as the previous exercise)
->
-> It should not be hard to find the messages for which we have accidentally used a repeated "k". Given a pair of such messages, you can discover the "k" we used with the following formula:
->
->          (m1 - m2)
->      k = --------- mod q
->          (s1 - s2)
->
-> ### 9th Grade Math: Study It!
->
-> If you want to demystify this, work out that equation from the original DSA equations.
->
-> ### Basic cyclic group math operations want to screw you
->
-> Remember all this math is mod q; s2 may be larger than s1, for instance, which isn't a problem if you're doing the subtraction mod q. If you're like me, you'll definitely lose an hour to forgetting a paren or a mod q. (And don't forget that modular inverse function!)
->
-> What's my private key? Its SHA-1 (from hex) is:
->
->    ca8f6f7c66fa362d40760d135b763eb8527d3d52
+> Sign "Hello, world". And "Goodbye, world".
 
 > ### How to:
 > Run all tests from this package:
 >
->     cargo test --package _44_dsa_nonce_recovery_from_repeated_nonce --lib tests
+>     cargo test --package _45_dsa_parameter_tampering --lib tests
 >
 > Capture the flag:
 >
->     cargo test --package _44_dsa_nonce_recovery_from_repeated_nonce --lib tests::capture_the_flag -- --exact
+>     cargo test --package _45_dsa_parameter_tampering --lib tests::capture_the_flag -- --exact

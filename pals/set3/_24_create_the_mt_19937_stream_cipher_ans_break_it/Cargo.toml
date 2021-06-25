@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 _21_implement_the_mt19937_mersenne_twister_rng = {path = "../_21_implement_the_mt19937_mersenne_twister_rng"}
 _23_clone_an_mt19937_rng_from_its_output = {path = "../_23_clone_an_mt19937_rng_from_its_output"}
-rand = ""
+rand = "0.8.4"
