@@ -41,14 +41,4 @@ mod tests {
         if cipher.decrypt(&mut buf).is_ok() {};
         println!("{}", String::from_utf8_lossy(&buf));
     }
-    #[test]
-    fn capture_theag() {
-        let mut n = 1;
-        let G = Point::Coord {
-            x: 179210853392303317793440285562762725654,
-            y: 105268671499942631758568591033409611165,
-        };
-
-        // while multiplication() {}
-    }
 }
