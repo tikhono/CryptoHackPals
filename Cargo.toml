@@ -81,7 +81,7 @@ members = [
     "pals/set4/_26_ctr_bitflipping",
     "pals/set4/_27_recover_the_key_from_cbc_with_iv_is_key",
     "pals/set4/_28_implement_a_sha_1_keyed_mac",
-    "pals/set4/_29_break_a_sha_1_keyed_mac_using_length_extension",
+    "pals/set4/_31_implement_and_break_hmac_sha1_with_an_artificial_timing_leak",
     "pals/set5/_33_implement_diffie_hellman",
     "pals/set5/_34_parameter_injection",
     "pals/set5/_35_implement_dh_with_malicious_g_parameters",
