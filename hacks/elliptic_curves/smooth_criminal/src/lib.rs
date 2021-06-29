@@ -34,13 +34,13 @@ mod tests {
 
         let iv = hex::decode("07e2628b590095a5e332d397b8a59aa7").unwrap();
 
-        let flag = hex::decode("8220b7c47b36777a737f5ef9caa2814cf20c1c1ef496ec21a9b4833da24a008d0870d3ac3a6ad80065c138a2ed6136af")
+        let mut flag = hex::decode("8220b7c47b36777a737f5ef9caa2814cf20c1c1ef496ec21a9b4833da24a008d0870d3ac3a6ad80065c138a2ed6136af")
             .unwrap();
 
         let cipher = Aes128Cbc::new_from_slices(key, &iv).unwrap();
-        let mut buf = flag;
+        // let mut buf = flag;
 
-        if cipher.decrypt(&mut buf).is_ok() {};
-        println!("{}", String::from_utf8_lossy(&buf));
+        cipher.decrypt(&mut flag).expect("Bad padding or decrypt");
+        println!("{}", String::from_utf8_lossy(&flag));
     }
 }

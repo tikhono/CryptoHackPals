@@ -41,10 +41,10 @@ mod tests {
         .unwrap();
 
         let derived_ciphertext = [
-            ciphertext.get(0..16).unwrap(),
-            &[0u8; 16],
-            ciphertext.get(0..16).unwrap(),
-            ciphertext.get(48..).unwrap(),
+            ciphertext.get(0..16).unwrap(), //C_1
+            &[0u8; 16],                     //0
+            ciphertext.get(0..16).unwrap(), //C_1
+            ciphertext.get(48..).unwrap(),  //Rest of ciphertext
         ]
         .concat();
 
@@ -57,8 +57,8 @@ mod tests {
         .unwrap();
 
         let iv_key = fixed_xor(
-            derived_plaintext.get(0..16).unwrap(),
-            derived_plaintext.get(32..48).unwrap(),
+            derived_plaintext.get(0..16).unwrap(),  //P'_1
+            derived_plaintext.get(32..48).unwrap(), //P'_3
         );
 
         let my_plaintext = decrypt(cipher, &*iv_key, Some(&*iv_key), &ciphertext).unwrap();
