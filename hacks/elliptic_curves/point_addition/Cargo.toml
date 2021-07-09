@@ -1,0 +1,10 @@
+[package]
+name = "point_addition"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+modinverse = "0.1.1"

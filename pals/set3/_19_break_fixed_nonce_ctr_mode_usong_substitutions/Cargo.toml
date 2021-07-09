@@ -10,8 +10,8 @@ edition = "2018"
 hex = "0.4"
 itertools = "0.10.0"
 base64 ="0.13.0"
-ascii = ""
-whatlang = ""
+ascii = "1.0.0"
+whatlang = "0.12.0"
 
 _02_fixed_xor = {path = "../../../pals/set1/_02_fixed_xor"}
 _03_single_byte_xor_cipher = {path = "../../../pals/set1/_03_single_byte_xor_cipher"}

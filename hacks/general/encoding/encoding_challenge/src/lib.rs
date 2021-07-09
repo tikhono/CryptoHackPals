@@ -23,7 +23,6 @@ mod tests {
             101, 110, 99, 111, 100, 101, 100, 34, 58, 32, 34, 102, 103, 104, 113, 118, 114, 113,
             95, 112, 121, 118, 122, 111, 95, 105, 114, 101, 102, 118, 98, 97, 102, 34, 125, 10,
         ]; //{"type": "rot13", "encoded": "fghqvrq_pyvzo_irefvbaf"}
-           // The type of `john` is `serde_json::Value
         let resp: Response = serde_json::from_slice(&ascii).unwrap();
         println!("{:?}", resp);
     }

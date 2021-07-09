@@ -4,10 +4,10 @@
 >
 > There are four main properties we should consider when we solve challenges using the XOR operator
 >
->       Commutative: A ⊕ B = B ⊕ A  
->       Associative: A ⊕ (B ⊕ C) = (A ⊕ B) ⊕ C  
->       Identity: A ⊕ 0 = A  
->       Self-Inverse: A ⊕ A = 0
+>       Commutative: a ⊕ B = B ⊕ a  
+>       Associative: a ⊕ (B ⊕ C) = (a ⊕ B) ⊕ C  
+>       Identity: a ⊕ 0 = a  
+>       Self-Inverse: a ⊕ a = 0
 >
 > Let's break this down. Commutative means that the order of the XOR operations is not important. Associative means that a chain of operations can be carried out without order (we do not need to worry about brackets). The identity is 0, so XOR with 0 "does nothing", and lastly something XOR'd with itself returns zero.
 >

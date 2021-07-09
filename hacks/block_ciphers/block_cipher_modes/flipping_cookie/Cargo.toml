@@ -8,6 +8,6 @@ edition = "2018"
 
 [dependencies]
 hex = "0.4"
-ascii = ""
+ascii = "1.0.0"
 ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}
 _02_fixed_xor = {path = "../../../../pals/set1/_02_fixed_xor"}

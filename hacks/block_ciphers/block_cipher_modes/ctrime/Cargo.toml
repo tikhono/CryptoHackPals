@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-curl = ""
+curl = "0.4.38"
 hex = "0.4"
-ascii = ""
+ascii = "1.0.0"
 ecb_cbc_wtf = {path = "../ecb_cbc_wtf"}

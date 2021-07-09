@@ -1,0 +1,6 @@
+nc socket.cryptohack.org 13382
+Welcome to my secure search engine backed by trusted certificate library!
+{"host":"www.bing.com", "curve": "secp256r1", "private_key": 115792089210356248762697446949407573529996955224135760342422259061068512044370, "generator": [26917031336335630350805290904899574903292792639991422008541635695952008983857, 77517656757371332161127542375026653060402730453393832579023072993157413624106]}
+"Hey bing! Tell me about crypto{Curveballing_Microsoft_CVE-2020-0601}"
+
+just multiply pubkey on order of curve + 1 and get the answer

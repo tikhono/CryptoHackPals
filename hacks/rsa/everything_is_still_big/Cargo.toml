@@ -1,0 +1,13 @@
+[package]
+name = "everything_is_still_big"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num = "0.4"
+diffie_hellman_starter_1 = {path = "../../diffie_hellman/diffie_hellman_starter_1"}
+lll-rs = "0.2.0"
+rug = "1.12.0"

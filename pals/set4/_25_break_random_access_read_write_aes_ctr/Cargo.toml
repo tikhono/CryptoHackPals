@@ -1,0 +1,12 @@
+[package]
+name = "_25_break_random_access_read_write_aes_ctr"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.3"
+openssl = "0.10.34"
+lazy_static = "1.4.0"

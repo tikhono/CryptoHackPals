@@ -11,6 +11,6 @@ _09_implement_pkcs7_padding = {path = "../_09_implement_pkcs7_padding"}
 _19_break_fixed_nonce_ctr_mode_usong_substitutions = {path = "../../set3/_19_break_fixed_nonce_ctr_mode_usong_substitutions"}
 hex = "0.4"
 rand = "0.8.3"
-openssl = ""
+openssl = "0.10.35"
 ascii = "1.0.0"
-lazy_static = ""
+lazy_static = "1.4.0"

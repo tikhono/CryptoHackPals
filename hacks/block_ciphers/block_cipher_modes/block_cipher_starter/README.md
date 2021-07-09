@@ -9,5 +9,3 @@
 > Just got familiar with web interface
 > 
 > **crypto{bl0ck_c1ph3r5_4r3_f457_!}**
-
-

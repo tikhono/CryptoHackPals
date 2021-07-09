@@ -9,5 +9,5 @@ edition = "2018"
 [dependencies]
 nalgebra = "*"
 ascii = "1.0.0"
-generic-array = ""
+generic-array = "0.14.4"
 structure_of_aes = { path = "../structure_of_aes" }

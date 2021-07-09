@@ -6,9 +6,9 @@
 >
 > > If the modulus is not prime, the set of integers modulo `n` define a ring.
 >
-> A finite field `Fp` is the set of integers `{0,1,...,p-1}`, and under both addition and multiplication there is an inverse element `b` for every element `a` in the set, such that `a + b = 0` and `a * b = 1`.
+> a finite field `Fp` is the set of integers `{0,1,...,p-1}`, and under both addition and multiplication there is an inverse element `b` for every element `a` in the set, such that `a + b = 0` and `a * b = 1`.
 >
-> > A field is a general name for a commutative ring in which every _non-zero_ element has a multiplicative inverse.
+> > a field is a general name for a commutative ring in which every _non-zero_ element has a multiplicative inverse.
 >
 > > Note that the identity element for addition and multiplication is different! This is because the identity when acted with the operator should do nothing: `a + 0 = a` and `a * 1 = a`.
 >

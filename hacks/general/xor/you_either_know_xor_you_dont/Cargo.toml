@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 hex = "0.4"
 _02_fixed_xor = {path = "../../../../pals/set1/_02_fixed_xor"}
-ascii = ""
+ascii = "1.0.0"

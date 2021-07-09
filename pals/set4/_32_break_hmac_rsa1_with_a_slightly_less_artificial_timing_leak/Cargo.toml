@@ -1,0 +1,11 @@
+[package]
+name = "_32_break_hmac_rsa1_with_a_slightly_less_artificial_timing_leak"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hmac = "0.11.0"
+sha2 = "0.9.5"

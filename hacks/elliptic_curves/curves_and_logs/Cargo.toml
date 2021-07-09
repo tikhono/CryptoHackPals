@@ -1,0 +1,13 @@
+[package]
+name = "curves_and_logs"
+version = "0.1.0"
+authors = ["tikhono <tikhonov.andrii.m@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+scalar_multiplication = {path = "../scalar_multiplication"}
+point_addition = {path = "../point_addition"}
+hex = "0.4"
+sha-1 = "0.9.6"
